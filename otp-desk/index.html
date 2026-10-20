@@ -45,14 +45,9 @@
 
   <script>
     (function() {
-      var path = window.location.pathname;
-      var repoMatch = path.match(/^\/([^\/]+)(\/.*)?$/);
-      var sub = "";
-      if (repoMatch && repoMatch[2]) {
-        sub = repoMatch[2];
-      } else if (path !== "/" && path !== "") {
-        sub = path;
-      }
+      var rawPath = window.location.pathname || "";
+      var cleanPath = rawPath.replace(/\/+$/, "");
+      var sub = (cleanPath && cleanPath !== "/") ? cleanPath : "";
       
       var gatewayJsonUrl = window.location.origin + '/gateway.json?t=' + Date.now();
       
@@ -85,6 +80,7 @@
           setTimeout(function() { window.location.reload(); }, 3000);
         });
     })();
+
   </script>
 </body>
 </html>
