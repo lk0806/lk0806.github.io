@@ -57,8 +57,9 @@
           return res.json();
         })
         .then(function(data) {
-          if (data && data.live_url) {
-            var destination = data.live_url.replace(/\/$/, '') + sub + window.location.search;
+          var live = data && (data.live_url || data.active_tunnel_url || data.tunnel_url);
+          if (live) {
+            var destination = live.replace(/\/$/, '') + sub + window.location.search;
             var frame = document.getElementById('viewport-frame');
             frame.src = destination;
             frame.onload = function() {
