@@ -3,85 +3,194 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Lalit Remote Workstation & JARVIS OS</title>
-  <link rel="icon" href="/favicon.ico">
+  <meta name="theme-color" content="#070d19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.json">
+  <title>Mahor 24/7 Command Hub — Cloud & Remote OS</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #070d19; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #070d19; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #f8fafc; }
+    #top-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 42px;
+      background: rgba(7, 13, 25, 0.95); border-bottom: 1px solid #1e293b;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 10px; z-index: 100; font-size: 12px;
+    }
+    .nav-group { display: flex; align-items: center; gap: 6px; overflow-x: auto; white-space: nowrap; }
+    .tab-btn {
+      padding: 5px 10px; border-radius: 7px; border: 1px solid #1e293b;
+      background: #0f172a; color: #cbd5e1; font-weight: 600; font-size: 11px;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .tab-btn.active { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: #0891b2; }
+    .tab-btn.cloud { border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .tab-btn.apk { background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5); color: #c7d2fe; }
     #viewport-frame {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100%; height: 100%;
-      border: none;
-      outline: none;
-      z-index: 10;
-      background: #070d19;
+      position: fixed; top: 42px; left: 0; right: 0; bottom: 0;
+      width: 100%; height: calc(100% - 42px); border: none; outline: none;
+      z-index: 10; background: #070d19; display: none;
     }
-    #loading-splash {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: #070d19;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #38bdf8;
+    #hub-dashboard {
+      position: fixed; top: 42px; left: 0; right: 0; bottom: 0;
+      overflow-y: auto; padding: 20px 16px; z-index: 20;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: radial-gradient(circle at top, #0f172a 0%, #070d19 70%);
     }
-    .pulse-ring { width: 44px; height: 44px; border: 3px solid #38bdf8; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .hub-card {
+      width: 100%; max-width: 540px; background: rgba(15, 23, 42, 0.9);
+      border: 1px solid #1e293b; border-radius: 18px; padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; padding: 4px 10px; border-radius: 99px;
+      background: #0f172a; border: 1px solid #334155; color: #38bdf8; margin-bottom: 12px;
+    }
+    .grid-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .tool-tile {
+      padding: 14px; border-radius: 14px; border: 1px solid #1e293b;
+      background: #0b1324; text-decoration: none; color: #fff;
+      display: flex; flex-direction: column; gap: 4px; transition: all 0.2s;
+    }
+    .tool-tile:hover { border-color: #06b6d4; transform: translateY(-2px); }
+    .tile-badge { font-size: 10px; font-family: monospace; color: #10b981; }
   </style>
 </head>
 <body>
-  <div id="loading-splash">
-    <div class="pulse-ring"></div>
-    <div style="font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; color: #94a3b8;">CONNECTING TO WORKSTATION...</div>
+  <div id="top-bar">
+    <div class="nav-group">
+      <button onclick="openPCStream()" id="btn-pc" class="tab-btn active">🖥️ Laptop Live</button>
+      <a href="/delta/" class="tab-btn cloud">📈 Delta 24/7 Cloud</a>
+      <a href="/decoder/" class="tab-btn cloud">🔢 Decoder v2.5</a>
+      <button onclick="openSub('/jarvis')" class="tab-btn">🤖 Jarvis</button>
+    </div>
+    <div class="nav-group">
+      <button id="pwa-btn" onclick="installPWA()" class="tab-btn apk" style="display:none;">📲 Install App</button>
+      <a href="/LaptopRemote.apk" download class="tab-btn apk">🤖 APK v3</a>
+    </div>
   </div>
 
-  <iframe
-    id="viewport-frame"
-    allow="microphone; camera; autoplay; display-capture; clipboard-read; clipboard-write; fullscreen"
-    style="display:none;"
-  ></iframe>
+  <div id="hub-dashboard">
+    <div class="hub-card">
+      <div class="status-pill" id="conn-pill">🔄 Checking Laptop Live Tunnel...</div>
+      <h2 style="font-size: 19px; font-weight: 800; color: #fff;">Mahor 24/7 Permanent Command Center</h2>
+      <p style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
+        Cloud tools (Delta Trading & Matrix Decoder) run <b>24/7 even when your laptop is OFF</b>.
+      </p>
+
+      <div class="grid-tools">
+        <a href="/decoder/" class="tool-tile" style="border-color: rgba(6,182,212,0.4);">
+          <span class="tile-badge">🟢 24/7 ALWAYS ON (NO LAPTOP NEEDED)</span>
+          <b style="font-size: 15px; color: #22d3ee;">🔢 Matrix Decoder v2.5</b>
+          <span style="font-size: 11px; color: #94a3b8;">Live Disawar 03 Verified • Haruf & Crossing</span>
+        </a>
+
+        <a href="/delta/" class="tool-tile" style="border-color: rgba(16,185,129,0.4);">
+          <span class="tile-badge">🟢 24/7 CLOUD SERVER</span>
+          <b style="font-size: 15px; color: #34d399;">📈 Delta Master Shield</b>
+          <span style="font-size: 11px; color: #94a3b8;">KABOOM + MA ka BAAP Auto Bot</span>
+        </a>
+
+        <a href="javascript:void(0)" onclick="forceOpenTunnel()" class="tool-tile">
+          <span class="tile-badge" id="pc-tile-status" style="color:#fbbf24;">⚡ WORKSTATION STREAM</span>
+          <b style="font-size: 15px; color: #f8fafc;">🖥️ Laptop Remote Screen</b>
+          <span style="font-size: 11px; color: #94a3b8;">Live Desktop Control & Terminal</span>
+        </a>
+
+        <a href="/LaptopRemote.apk" download class="tool-tile" style="border-color: rgba(139,92,246,0.4);">
+          <span class="tile-badge" style="color:#c4b5fd;">📦 ANDROID 11-15 VERIFIED (v3 SIGNED)</span>
+          <b style="font-size: 15px; color: #ddd6fe;">📲 Download Android APK</b>
+          <span style="font-size: 11px; color: #94a3b8;">Fixed Zipalign + v3 Signature</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <iframe id="viewport-frame" allow="microphone; camera; autoplay; display-capture; clipboard-read; clipboard-write; fullscreen"></iframe>
 
   <script>
-    (function() {
-      var rawPath = window.location.pathname || "";
-      var cleanPath = rawPath.replace(/\/+$/, "");
-      var sub = (cleanPath && cleanPath !== "/") ? cleanPath : "";
-      
-      var gatewayJsonUrl = window.location.origin + '/gateway.json?t=' + Date.now();
-      
-      fetch(gatewayJsonUrl)
-        .then(function(res) {
-          if (!res.ok) throw new Error("Gateway JSON unavailable");
-          return res.json();
-        })
-        .then(function(data) {
-          var live = data && (data.live_url || data.active_tunnel_url || data.tunnel_url);
-          if (live) {
-            var destination = live.replace(/\/$/, '') + sub + window.location.search;
-            var frame = document.getElementById('viewport-frame');
-            frame.src = destination;
-            frame.onload = function() {
-              var splash = document.getElementById('loading-splash');
-              if (splash) splash.style.display = 'none';
-              frame.style.display = 'block';
-            };
-            setTimeout(function() {
-              var splash = document.getElementById('loading-splash');
-              if (splash) splash.style.display = 'none';
-              frame.style.display = 'block';
-            }, 1500);
-          } else {
-            document.getElementById('loading-splash').innerHTML = '<div style="color:#ef4444;font-size:0.9rem;">Workstation is currently sleeping.</div>';
-          }
-        })
-        .catch(function(err) {
-          console.warn("Retrying gateway connection...", err);
-          setTimeout(function() { window.location.reload(); }, 3000);
-        });
-    })();
+    let liveTunnelUrl = null;
+    let deferredPrompt = null;
 
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('pwa-btn').style.display = 'inline-flex';
+    });
+
+    function installPWA() {
+      if (deferredPrompt) deferredPrompt.prompt();
+    }
+
+    // Wake Render Cloud 24/7 in background whenever anyone visits hub
+    fetch('https://delta-master-shield-portal.onrender.com/healthz').catch(() => {});
+
+    // Check path routing
+    const rawPath = (window.location.pathname || '').replace(/\/+$/, '');
+    if (rawPath === '/decoder') {
+      window.location.replace('/decoder/');
+    } else if (rawPath === '/delta') {
+      window.location.replace('/delta/');
+    }
+
+    function checkGateway() {
+      fetch('/gateway.json?t=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
+          const url = data.live_url || data.active_tunnel_url || data.url;
+          if (!url) throw new Error('No URL');
+          liveTunnelUrl = url.replace(/\/$/, '');
+          // Probe if laptop tunnel is actually reachable right now
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 3500);
+          return fetch(liveTunnelUrl + '/api/auth/status', { signal: ctrl.signal, mode: 'no-cors' })
+            .then(() => {
+              clearTimeout(timer);
+              document.getElementById('conn-pill').innerHTML = '🟢 Laptop Workstation ONLINE — Launching Stream...';
+              document.getElementById('pc-tile-status').innerText = '🟢 ONLINE NOW';
+              const sub = (rawPath && rawPath !== '/') ? rawPath : '';
+              openIframe(liveTunnelUrl + sub + window.location.search);
+            });
+        })
+        .catch(() => {
+          document.getElementById('conn-pill').innerHTML = '☁️ Laptop Stream Standby — <b>24/7 Cloud Tools Ready Below!</b>';
+          document.getElementById('pc-tile-status').innerText = '🌙 STANDBY (CLOUD ACTIVE)';
+        });
+    }
+
+    function openIframe(dest) {
+      const frame = document.getElementById('viewport-frame');
+      frame.src = dest;
+      frame.style.display = 'block';
+      document.getElementById('hub-dashboard').style.display = 'none';
+    }
+
+    function forceOpenTunnel() {
+      if (liveTunnelUrl) openIframe(liveTunnelUrl + '/');
+      else checkGateway();
+    }
+
+    function openPCStream() {
+      const frame = document.getElementById('viewport-frame');
+      if (frame.style.display === 'block') {
+        frame.style.display = 'none';
+        document.getElementById('hub-dashboard').style.display = 'flex';
+      } else if (liveTunnelUrl) {
+        openIframe(liveTunnelUrl + '/');
+      }
+    }
+
+    function openSub(subPath) {
+      if (liveTunnelUrl) openIframe(liveTunnelUrl + subPath);
+      else window.location.href = 'https://delta-master-shield-portal.onrender.com' + subPath;
+    }
+
+    checkGateway();
   </script>
 </body>
 </html>
