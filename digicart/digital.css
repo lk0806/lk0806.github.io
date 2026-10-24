@@ -1,0 +1,452 @@
+:root {
+  --digi-bg: #090d16;
+  --digi-card: #111827;
+  --digi-border: #1f293d;
+  --digi-primary: #6366f1;
+  --digi-primary-hover: #4f46e5;
+  --digi-emerald: #10b981;
+  --digi-amber: #f59e0b;
+  --digi-text: #f9fafb;
+  --digi-text-dim: #9ca3af;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--digi-bg);
+  color: var(--digi-text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Announcement */
+.digi-top-bar {
+  background: linear-gradient(90deg, #4338ca, #6366f1, #059669);
+  color: #fff;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+/* Nav */
+.digi-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 13, 22, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--digi-border);
+  padding: 16px 0;
+}
+
+.digi-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.digi-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.digi-logo span {
+  color: #818cf8;
+}
+
+.digi-badge {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Hero */
+.digi-hero {
+  text-align: center;
+  padding: 60px 0 40px;
+  position: relative;
+}
+
+.digi-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  margin-bottom: 18px;
+}
+
+.digi-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.digi-hero p {
+  font-size: 1.15rem;
+  color: var(--digi-text-dim);
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+/* Metrics Row */
+.digi-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--digi-border);
+}
+
+.metric-item strong {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.metric-item span {
+  font-size: 0.85rem;
+  color: var(--digi-text-dim);
+}
+
+/* Catalog Grid */
+.catalog-section {
+  padding: 50px 0 80px;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.section-head p {
+  color: var(--digi-text-dim);
+  font-size: 1rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .digi-hero h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Product Card */
+.digital-card {
+  background: var(--digi-card);
+  border: 1px solid var(--digi-border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.digital-card:hover {
+  transform: translateY(-6px);
+  border-color: #6366f1;
+  box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25);
+}
+
+.digital-card.featured {
+  border-color: #f59e0b;
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, #111827 40%);
+}
+
+.featured-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f59e0b;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.card-banner {
+  height: 180px;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-banner-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.category-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #818cf8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.digital-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.digital-card p {
+  font-size: 0.88rem;
+  color: var(--digi-text-dim);
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.feature-bullets {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-bullets li {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-bullets li span {
+  color: #10b981;
+}
+
+.card-pricing-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--digi-border);
+}
+
+.cur-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.orig-price {
+  font-size: 1.05rem;
+  color: #64748b;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.btn-download-now {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-download-now:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-featured-mega {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #000;
+  font-weight: 800;
+}
+
+.btn-featured-mega:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4);
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.digital-modal {
+  background: #111827;
+  border: 1px solid var(--digi-border);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 460px;
+  padding: 26px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.modal-qr-box {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 18px auto;
+  display: inline-block;
+}
+
+.modal-qr-box img {
+  width: 170px;
+  height: 170px;
+}
+
+.upi-id-tag {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #a5b4fc;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.btn-whatsapp-instant {
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-whatsapp-instant:hover {
+  background: #1eb956;
+}
+
+/* Footer */
+.digi-footer {
+  border-top: 1px solid var(--digi-border);
+  padding: 40px 0 20px;
+  background: #060911;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--digi-text-dim);
+}
