@@ -160,6 +160,13 @@ body {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+  .mirror-visual-card {
+    position: static;
+    top: auto;
+  }
+  body {
+    padding-bottom: 80px;
+  }
 }
 
 /* Interactive Mirror Preview Container */
