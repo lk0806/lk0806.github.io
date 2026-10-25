@@ -3,27 +3,559 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DigiCart India | Loading...</title>
-  <script>
-    // Intelligent Decoupled Router for digicartcartindia.shop
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      var path = window.location.pathname.toLowerCase();
-      var hash = window.location.hash.toLowerCase();
-
-      // If user came via digital campaign, digital query, or digital path
-      if (params.get('view') === 'digital' || params.get('ref') === 'digital' || hash === '#digital' || path.indexOf('digital') !== -1) {
-        window.location.replace('digital.html');
-      } else {
-        // Default flagship destination for all gifting and general traffic
-        window.location.replace('magic-mirror.html');
-      }
-    })();
-  </script>
+  <title>Personalized LED Magic Mirror Photo Frame | Mahor Studio Gifting</title>
+  <meta name="description" content="Turn your sweetest memories into a glowing night lamp! Personalized Heart & Round LED Magic Mirror. Dual power USB + AA Battery. 1-Click WhatsApp & UPI Order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background:#0a0b10; color:#fff; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
-  <div style="text-align:center;">
-    <p style="font-size:1.2rem; color:#94a3b8;">Redirecting to your exclusive shopping experience...</p>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">LIMITED TIME</span>
+    ⚡ Extra ₹50 Flat Off on UPI Orders | Free Premium Gift Box Packaging Included Today!
   </div>
+
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="magic-mirror.html" class="logo">
+        <div class="logo-icon">🪞</div>
+        <div class="logo-text">Mahor<span>Studio</span></div>
+      </a>
+      <div class="nav-badge">✨ 100% Genuine Handcrafted Gifting</div>
+      <div class="nav-actions">
+        <a href="https://wa.me/918279361573?text=Hi%20Mahor%20Studio!%20I%20want%20to%20inquire%20about%20the%20LED%20Magic%20Mirror" class="btn-whatsapp-sm" target="_blank">
+          <span>💬</span> WhatsApp Help
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container hero-section">
+    <div class="hero-grid">
+      
+      <!-- Left Column: Interactive Simulator & Media Showcase -->
+      <div class="mirror-visual-card">
+        <div class="simulator-header">
+          <div class="sim-label">
+            <span class="sim-status" id="simStatus"></span>
+            <span id="simText">High-Definition Mirror (Day Mode)</span>
+          </div>
+          <button class="toggle-btn" id="toggleLedBtn" aria-label="Toggle LED Light">
+            <span>💡</span> Turn ON Lamp
+          </button>
+        </div>
+
+        <!-- High-Fidelity SVG Masks for Authentic Frame Clipping -->
+        <svg width="0" height="0" class="svg-clip-defs" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+          <defs>
+            <clipPath id="heartFrameClip" clipPathUnits="objectBoundingBox">
+              <path d="M 0.5, 0.85 
+                       C 0.15, 0.55 0.05, 0.35 0.05, 0.22 
+                       A 0.225, 0.225 0 0, 1 0.5, 0.22 
+                       A 0.225, 0.225 0 0, 1 0.95, 0.22 
+                       C 0.95, 0.35 0.85, 0.55 0.5, 0.85 Z" />
+            </clipPath>
+            <clipPath id="roundFrameClip" clipPathUnits="objectBoundingBox">
+              <circle cx="0.5" cy="0.5" r="0.48" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <!-- The Interactive Mirror Stage -->
+        <div class="mirror-stage" id="mirrorStage">
+          <div class="mirror-device-frame" id="deviceFrame">
+            <!-- Base Mirror Shell Image (Day Mode HD Silver Mirror -> Night Mode Studio Glowing Lamp) -->
+            <img src="assets/mirror/studio_heart_day.jpg" alt="Magic Mirror Base" class="mirror-img-base" id="baseMirrorImg">
+            
+            <!-- Glowing Photo Layer (Revealed when user uploads a custom photo & Switch is ON) -->
+            <img src="assets/mirror/magic_mirror_heart_lifestyle.jpg" alt="Your Customized Photo" class="mirror-photo-overlay" id="photoOverlay">
+            
+            <!-- LED Radial Glow Halo -->
+            <div class="mirror-led-glow"></div>
+
+            <!-- Clickable Red Push Button on Base -->
+            <div class="red-power-indicator" id="redPowerIndicator" title="Click here to tap red power switch">
+              <span class="btn-dot"></span> Click Base Switch
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Photo Upload Simulator Strip -->
+        <div class="upload-strip">
+          <div class="upload-strip-text">
+            <span id="photoStatusText"><strong>📸 Live Preview:</strong> Upload any photo to test it inside this frame</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <label for="photoInput1" class="btn-upload-label">
+              Choose Photo
+              <input type="file" id="photoInput1" accept="image/*" style="display: none;">
+            </label>
+            <button type="button" class="btn-export-stencil" id="exportStencilBtn" title="Export High-Resolution 300 DPI Print Stencil">
+              📥 Export Stencil
+            </button>
+          </div>
+        </div>
+
+        <!-- 4-Thumbnail Angles Selector -->
+        <div class="thumb-gallery" id="thumbGallery">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+
+      <!-- Right Column: Product Title, Pricing, Variant & 1-Click Order -->
+      <div class="product-details-card">
+        
+        <div class="rating-badge">
+          <span>⭐ 4.9/5 Rating</span>
+          <span>•</span>
+          <span>1,480+ Happy Couples Verified</span>
+        </div>
+
+        <div>
+          <h1 class="product-title" id="productTitle">Personalized Heart-Shape LED Magic Mirror Photo Frame</h1>
+          <p class="product-subtitle">During the day, it's a crystal-clear makeup mirror. Press the red button at night, and it magically transforms into an illuminated romantic couple night lamp!</p>
+        </div>
+
+        <!-- Pricing Card -->
+        <div class="price-container">
+          <div class="price-row">
+            <div class="current-price" id="currentPrice">₹599</div>
+            <div class="original-price" id="originalPrice">₹1,499</div>
+            <div class="discount-tag" id="discountTag">60% OFF</div>
+          </div>
+          <p class="price-subnote">✨ Includes custom high-gloss photo printing + USB power cord + Gift Box</p>
+        </div>
+
+        <!-- Shape Variant Selection -->
+        <div class="variant-section">
+          <label class="variant-title">1. Select Frame Shape:</label>
+          <div class="variant-grid">
+            <div class="variant-card active" data-shape="heart">
+              <div class="variant-card-icon">❤️</div>
+              <div class="variant-info">
+                <h4>Heart Shape</h4>
+                <p>₹599 • Romantic couples & anniversary gift</p>
+              </div>
+            </div>
+            <div class="variant-card" data-shape="round">
+              <div class="variant-card-icon">⚪</div>
+              <div class="variant-info">
+                <h4>Classic Round</h4>
+                <p>₹549 • Minimalist bedroom & office desk</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customization Upload Box -->
+        <div class="customization-box">
+          <div class="custom-title">
+            <span>🖼️</span> 2. Upload Your Special Photo:
+          </div>
+          <p class="custom-desc">Upload your photo now for instant simulator preview, or send it on WhatsApp right after placing your order. We edit & crop every picture for maximum brilliance!</p>
+          <label for="photoInput2" class="upload-button-full">
+            <span>📤</span> Upload Couple / Family Photo
+            <input type="file" id="photoInput2" accept="image/*" style="display: none;">
+          </label>
+        </div>
+
+        <!-- Anti-RTO Order Modes: Prepaid vs COD Advance -->
+        <div class="variant-section">
+          <label class="variant-title">3. Choose Payment Mode:</label>
+          <div class="order-modes">
+            <!-- Full Prepaid Option -->
+            <div class="mode-card active" data-mode="prepaid">
+              <div class="mode-left">
+                <div class="mode-radio"></div>
+                <div class="mode-text">
+                  <h5>Full Prepaid via UPI / Card</h5>
+                  <p id="prepaidCardDesc">Instant ₹50 Flat Off • Priority Express Dispatch</p>
+                </div>
+              </div>
+              <div>
+                <div class="mode-price" id="prepaidCardPrice">₹549</div>
+                <div class="mode-save">Save ₹50 Extra</div>
+              </div>
+            </div>
+
+            <!-- COD Advance Option -->
+            <div class="mode-card" data-mode="cod">
+              <div class="mode-left">
+                <div class="mode-radio"></div>
+                <div class="mode-text">
+                  <h5>Cash on Delivery (Anti-RTO Shield)</h5>
+                  <p id="codCardDesc">₹99 Advance Token to verify order • ₹500 at doorstep</p>
+                </div>
+              </div>
+              <div>
+                <div class="mode-price" id="codCardPrice">₹99 Now</div>
+                <div class="mode-save">COD Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTA Buttons -->
+        <div class="cta-group">
+          <button class="btn-primary-order open-checkout-modal">
+            <span>⚡</span> BUY NOW WITH ₹50 UPI DISCOUNT
+          </button>
+          <a href="#" class="btn-whatsapp-order" id="whatsappOrderBtn">
+            <span>💬</span> ORDER DIRECTLY VIA WHATSAPP (1-CLICK)
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-strip">
+          <div class="trust-item">
+            <span>🛡️</span>
+            Zero Damage Transit Guarantee (Full Free Replacement)
+          </div>
+          <div class="trust-item">
+            <span>⚡</span>
+            Dispatched in 24 Hours via Bluedart / Delhivery
+          </div>
+          <div class="trust-item">
+            <span>🎁</span>
+            Luxury Gift Packaging with Custom Message Card
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Product Highlights & Dual Power Features -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title">Why Everyone Loves The Magic Mirror</h2>
+      <p class="section-subtitle">Engineered with high-clarity optical glass, warm ambient LEDs, and twist-open clips so you can update memories anytime.</p>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>HD Makeup Mirror by Day</h3>
+          <p>Features premium high-reflection mirror glass without any optical distortion. Perfect for daily grooming, makeup, and desk aesthetics.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Illuminated Photo Lamp by Night</h3>
+          <p>Tap the red switch on the base to activate 8+ warm white LED diodes that shine through the one-way glass, revealing your favorite photo in vibrant clarity.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔋</div>
+          <h3>Dual Power Flexibility</h3>
+          <p>Power it continuously with the included USB cable (plug into any phone charger or power bank), or use 3x AA batteries for wireless table portability!</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Twist Tabs - Change Photos at Home</h3>
+          <p>Unlike glued photo frames, our back panel features 3 easy twist locks. Swap photos whenever you celebrate a new milestone or anniversary in seconds!</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3>Compact 20cm x 25cm Desk Size</h3>
+          <p>The perfect proportion for bedside tables, office desks, living room display shelves, and vanity stations. Sturdy weighted base prevents tipping.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>100% Privacy & Data Security</h3>
+          <p>Your photos are handled strictly by our in-house printing studio and deleted permanently immediately after dispatch. 100% privacy guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Product Showcase (Authentic Studio & Technical Infographic Shots) -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2 class="section-title">Studio Showcase & Build Specifications</h2>
+      <p class="section-subtitle">Inspect our high-grade white frame, warm 3000K LED illumination, 20cm × 25cm dimensions, and dual USB + 3x AA battery power system.</p>
+
+      <div class="real-gallery-grid">
+        <div class="gallery-card">
+          <img src="assets/mirror/magic_mirror_heart_lifestyle.jpg" alt="Heart LED Magic Mirror Night Lamp">
+          <div class="gallery-caption">Romantic Heart LED Night Glow</div>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/mirror/magic_mirror_lifestyle_dressing.jpg" alt="Round LED Magic Mirror Dressing Table">
+          <div class="gallery-caption">360° Classic Round Vanity Mirror</div>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/mirror/magic_mirror_front_view.jpg" alt="20cm x 25cm Dimensions & Touch Switch">
+          <div class="gallery-caption">20cm × 25cm Size & Touch Switch</div>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/mirror/magic_mirror_side_view.jpg" alt="Dual Power USB Cable + 3x AA Battery Slot">
+          <div class="gallery-caption">Dual Power: USB + 3x AA Battery Slot</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live 9:16 Vertical Reel Video Showcase -->
+  <section class="video-reel-section">
+    <div class="container">
+      <div class="reel-showcase-grid">
+        <div class="reel-player-wrapper">
+          <div class="reel-badge-live">🎬 LIVE 9:16 VERTICAL REEL SHOWCASE</div>
+          <video class="reel-video-player" controls autoplay muted loop playsinline poster="assets/mirror/magic_mirror_heart_lifestyle.jpg">
+            <source src="assets/mirror/digicart_reel_preview.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <div class="reel-copy-card">
+          <span class="coming-pill">✨ SEE THE REAL MAGIC IN ACTION</span>
+          <h2>Watch How Normal Mirror Transforms Into A Glowing Memory Lamp!</h2>
+          <p>By day, it sits on your dressing table as a crystal-clear HD makeup mirror. At night, one tap on the base switch illuminates your favorite couple or family photo with a warm golden 3000K halo.</p>
+          <ul class="reel-highlights">
+            <li><span>💡</span> <strong>Instant 1-Tap Magic Reveal:</strong> Hidden photo appears only when LEDs turn ON.</li>
+            <li><span>🔌</span> <strong>USB + Cordless Battery Power:</strong> Includes free USB cable + 3x AA battery compartment underneath.</li>
+            <li><span>🎁</span> <strong>Ready-to-Gift Luxury Box:</strong> Safe multi-layer foam packaging for birthdays, weddings & anniversaries.</li>
+          </ul>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px;">
+            <button class="btn-primary-order open-checkout-modal" style="flex: 1; min-width: 240px;">
+              <span>⚡</span> ORDER YOURS NOW (₹50 OFF)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Personalized Gift Collection & Wall Panels — Coming Soon -->
+  <section class="coming-soon-section">
+    <div class="container">
+      <div class="coming-header">
+        <span class="coming-pill">🚀 NEXT-GEN GIFTING LAB • COMING SOON</span>
+        <h2 class="section-title">Upcoming Personalized Gift Frames & Neon Wall Panels</h2>
+        <p class="section-subtitle">Pre-book VIP early-bird access on WhatsApp and get flat 25% launch discount when our new customized LED decor collection drops!</p>
+      </div>
+
+      <div class="coming-grid">
+        <div class="coming-card">
+          <div class="coming-img-wrap">
+            <img src="assets/mirror/coming_neon_panel.jpg" alt="Custom Name LED Neon Wall Sign">
+            <span class="coming-status-tag">Launching Next Week</span>
+          </div>
+          <div class="coming-body">
+            <h3>Custom Name LED Neon Wall Sign</h3>
+            <p>Warm Gold & Rose-Pink Acrylic Backlit Wall Panel for Bedroom, Couple Room & Creator Studio.</p>
+            <a href="https://wa.me/918279361573?text=Hi%20Mahor%20Studio!%20Please%20notify%20me%20when%20the%20Custom%20Name%20LED%20Neon%20Wall%20Sign%20launches%20with%20VIP%20discount!" target="_blank" class="btn-notify-wa">
+              <span>🔔</span> Notify Me on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="coming-card">
+          <div class="coming-img-wrap">
+            <img src="assets/mirror/coming_acrylic_lamp.jpg" alt="3D Engraved Couple Acrylic Night Lamp">
+            <span class="coming-status-tag">Coming Soon</span>
+          </div>
+          <div class="coming-body">
+            <h3>3D Engraved Couple Acrylic Night Lamp</h3>
+            <p>Laser-Etched Custom Photo, Names & Anniversary Calendar Date on Warm Wooden LED Base.</p>
+            <a href="https://wa.me/918279361573?text=Hi%20Mahor%20Studio!%20Please%20notify%20me%20when%20the%203D%20Engraved%20Couple%20Acrylic%20Night%20Lamp%20launches!" target="_blank" class="btn-notify-wa">
+              <span>🔔</span> Notify Me on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="coming-card">
+          <div class="coming-img-wrap">
+            <img src="assets/mirror/coming_rotating_cube.jpg" alt="360 Rotating 5-Photo Memory Cube Lamp">
+            <span class="coming-status-tag">Upcoming Release</span>
+          </div>
+          <div class="coming-body">
+            <h3>360° Rotating 5-Photo Memory Cube</h3>
+            <p>Motorized Illuminated Photo Cube — Showcase 5 Family or Wedding Memories with Soft Ambient Glow.</p>
+            <a href="https://wa.me/918279361573?text=Hi%20Mahor%20Studio!%20Please%20notify%20me%20when%20the%20360%20Rotating%20Photo%20Cube%20launches!" target="_blank" class="btn-notify-wa">
+              <span>🔔</span> Notify Me on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="coming-card">
+          <div class="coming-img-wrap">
+            <img src="assets/mirror/coming_spotify_plaque.jpg" alt="Personalized Music Code & Photo LED Frame">
+            <span class="coming-status-tag">Coming Soon</span>
+          </div>
+          <div class="coming-body">
+            <h3>Personalized Music Code & Photo Plaque</h3>
+            <p>Scannable Favorite Song Wave + Couple Photo on Illuminated Crystal Acrylic Stand.</p>
+            <a href="https://wa.me/918279361573?text=Hi%20Mahor%20Studio!%20Please%20notify%20me%20when%20the%20Personalized%20Music%20LED%20Plaque%20launches!" target="_blank" class="btn-notify-wa">
+              <span>🔔</span> Notify Me on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="reviews-section">
+    <div class="container">
+      <h2 class="section-title">Loved by 1,480+ Happy Customers Across India</h2>
+      <p class="section-subtitle">Read genuine feedback from customers who surprised their loved ones with this magical gift.</p>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Maine apni wife ko first anniversary par gift kiya tha. Jab tak light off thi usko laga normal mirror hai, jaise hi red button press kiya hamari wedding picture glow karne lagi! She literally had tears in her eyes. Best anniversary gift ever!"</p>
+          <div class="reviewer">
+            <span class="reviewer-name">Rahul & Priya Sharma</span>
+            <span class="verified-tag">✓ Verified Buyer (Jaipur)</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Packaging was extremely safe with multi-layer bubble wrap. USB wire is included and the photo printing quality is crystal clear! Delivery was made in just 3 days to Lucknow. Highly recommended!"</p>
+          <div class="reviewer">
+            <span class="reviewer-name">Neha Saxena</span>
+            <span class="verified-tag">✓ Verified Buyer (Lucknow)</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Bohot hi unique concept hai! Day time me dressing table pe mirror ki tarah use hota hai aur raat me warm night lamp. Red button press karte hi photo dikhti hai. ₹549 me total worth it product hai."</p>
+          <div class="reviewer">
+            <span class="reviewer-name">Amitabh Verma</span>
+            <span class="verified-tag">✓ Verified Buyer (Delhi NCR)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Mahor Studio Gifting</h4>
+          <p>Crafting magical personalized moments. Hand-assembled, inspected, and dispatched with love across 19,000+ pincodes in India.</p>
+          <p style="margin-top: 10px; font-size: 0.8rem; color: #94a3b8;">
+            Merchant: MAHOR ENTERPRISES<br>
+            WhatsApp Support: +91 8279361573 / +91 8923731395
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="https://wa.me/918279361573" target="_blank">Track Order on WhatsApp</a></li>
+            <li><a href="https://wa.me/918279361573" target="_blank">Transit Damage Replacement</a></li>
+            <li><a href="https://wa.me/918279361573" target="_blank">Bulk / Corporate Gifting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Security & Guarantees</h4>
+          <ul>
+            <li>🔒 256-Bit Encrypted UPI Checkout</li>
+            <li>📦 Safe-Transit Foam Packing</li>
+            <li>⚡ 24-Hour Fast Dispatch</li>
+            <li>🤝 100% Satisfaction Guarantee</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mahor Studio • All Rights Reserved • Authorized D2C Brand of MAHOR ENTERPRISES</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile Bar -->
+  <div class="mobile-sticky-bar">
+    <div class="mobile-price-col">
+      <span class="mobile-cur-price" id="mobileCurPrice">₹599</span>
+      <span class="mobile-orig-price" id="mobileOrigPrice">₹1,499</span>
+    </div>
+    <button class="mobile-btn-order open-checkout-modal">
+      ⚡ ORDER NOW (₹50 OFF)
+    </button>
+  </div>
+
+  <!-- Checkout & Instant UPI QR Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="checkout-modal">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close Modal">&times;</button>
+      
+      <h3 class="modal-title">Complete Your Order</h3>
+      <p class="modal-subtitle">Pay securely via UPI or choose COD with Token Advance</p>
+
+      <div class="order-summary-box">
+        <div>
+          <strong id="modalProductLabel">Heart Shape Magic Mirror</strong>
+          <p style="font-size: 0.75rem; color: #94a3b8;" id="modalPayNote">Instant ₹50 Flat Off applied!</p>
+        </div>
+        <div style="text-align: right;">
+          <strong id="modalAmountLabel" style="font-size: 1.15rem; color: #10b981;">₹549</strong>
+          <span style="font-size: 0.7rem; display: block; color: #94a3b8;">Free Express Shipping</span>
+        </div>
+      </div>
+
+      <!-- Payment Mode Selector inside Modal -->
+      <div class="modal-mode-toggle" id="modalModeToggle">
+        <button type="button" class="modal-mode-btn active" data-mode="prepaid">
+          <span>⚡ Full Prepaid (Save ₹50)</span>
+        </button>
+        <button type="button" class="modal-mode-btn" data-mode="cod">
+          <span>🛡️ COD Advance (₹99 Token)</span>
+        </button>
+      </div>
+
+      <!-- Live UPI QR Code Display -->
+      <div class="upi-qr-display">
+        <p style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Scan with Any UPI App (GPay, PhonePe, Paytm)</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D8279361573%40ybl%26pn%3DMAHOR%20ENTERPRISES%26am%3D549%26cu%3DINR" alt="UPI QR Code" id="modalQrImg">
+        <div class="upi-id-badge">UPI ID: 8279361573@ybl (MAHOR ENTERPRISES)</div>
+      </div>
+
+      <form class="checkout-form" id="checkoutForm" onsubmit="return false;">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" placeholder="Enter recipient full name" required>
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp / Mobile Number *</label>
+          <input type="tel" id="custPhone" placeholder="Enter 10-digit mobile number" required>
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Address *</label>
+          <textarea id="custAddress" rows="2" placeholder="House no, street, landmark..." required></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="custCity" placeholder="City / District" required>
+          </div>
+          <div class="form-group">
+            <label>Pincode *</label>
+            <input type="text" id="custPincode" placeholder="6-digit Pincode" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary-order" id="submitOrderBtn" style="margin-top: 10px;">
+          <span>✓</span> CONFIRM & VERIFY ON WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
