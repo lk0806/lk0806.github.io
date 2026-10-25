@@ -76,28 +76,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalPayNote = document.getElementById('modalPayNote');
   const qrImage = document.getElementById('modalQrImg');
 
-  // Default images for Heart & Round
+  // Default Studio Day/Night images for Heart & Round
   const assets = {
     heart: {
-      unlit: 'assets/mirror/magic_mirror_heart.jpg',
-      lit: 'assets/mirror/magic_mirror_red_led_heart.jpg',
-      defaultPhoto: 'assets/mirror/magic_mirror_lifestyle_desk.jpg',
+      unlit: 'assets/mirror/studio_heart_day.jpg',
+      lit: 'assets/mirror/magic_mirror_heart_lifestyle.jpg',
+      defaultPhoto: 'assets/mirror/magic_mirror_heart_lifestyle.jpg',
       thumbs: [
-        'assets/mirror/magic_mirror_heart.jpg',
-        'assets/mirror/media_1792780671100_ea398149.jpg',
-        'assets/mirror/media_1792780671457_ba0a8f32.jpg',
-        'assets/mirror/magic_mirror_lifestyle_dressing.jpg'
+        'assets/mirror/studio_heart_day.jpg',
+        'assets/mirror/magic_mirror_heart_lifestyle.jpg',
+        'assets/mirror/magic_mirror_front_view.jpg',
+        'assets/mirror/magic_mirror_side_view.jpg'
       ]
     },
     round: {
-      unlit: 'assets/mirror/magic_mirror_round.jpg',
-      lit: 'assets/mirror/mb10_3_round.jpg',
+      unlit: 'assets/mirror/studio_round_day.jpg',
+      lit: 'assets/mirror/magic_mirror_lifestyle_dressing.jpg',
       defaultPhoto: 'assets/mirror/magic_mirror_lifestyle_dressing.jpg',
       thumbs: [
-        'assets/mirror/magic_mirror_round.jpg',
-        'assets/mirror/mb10_3_round.jpg',
-        'assets/mirror/rotating_mb17_1_round.jpg',
-        'assets/mirror/magic_mirror_angle_studio.jpg'
+        'assets/mirror/studio_round_day.jpg',
+        'assets/mirror/magic_mirror_lifestyle_dressing.jpg',
+        'assets/mirror/magic_mirror_angle_studio.jpg',
+        'assets/mirror/magic_mirror_dimensions.jpg'
       ]
     }
   };
@@ -112,15 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (state.ledState) {
       stage.classList.add('led-on');
+      if (state.uploadedPhotoUrl) {
+        stage.classList.add('custom-photo-active');
+      } else {
+        stage.classList.remove('custom-photo-active');
+      }
       toggleBtn.classList.add('active');
       toggleBtn.innerHTML = '<span>💡</span> Turn OFF Lamp';
       simStatus.classList.add('active');
       simText.textContent = 'Glowing Photo Lamp (Night Mode)';
-      if (!state.uploadedPhotoUrl && state.shape === 'heart') {
-        baseImg.src = assets.heart.lit;
-      }
+      baseImg.src = state.shape === 'heart' ? assets.heart.lit : assets.round.lit;
     } else {
       stage.classList.remove('led-on');
+      stage.classList.remove('custom-photo-active');
       toggleBtn.classList.remove('active');
       toggleBtn.innerHTML = '<span>💡</span> Turn ON Lamp';
       simStatus.classList.remove('active');
@@ -235,14 +239,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Title & Frame
     if (shape === 'heart') {
       stage.classList.remove('round-active');
-      baseImg.src = assets.heart.unlit;
+      baseImg.src = state.ledState ? assets.heart.lit : assets.heart.unlit;
       if (!state.uploadedPhotoUrl) {
         photoOverlay.src = assets.heart.defaultPhoto;
       }
       productTitleEl.textContent = 'Personalized Heart-Shape LED Magic Mirror Photo Frame';
     } else {
       stage.classList.add('round-active');
-      baseImg.src = assets.round.unlit;
+      baseImg.src = state.ledState ? assets.round.lit : assets.round.unlit;
       if (!state.uploadedPhotoUrl) {
         photoOverlay.src = assets.round.defaultPhoto;
       }
