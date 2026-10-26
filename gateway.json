@@ -1,9 +1,9 @@
 {
-  "live_url": "https://span-ratings-www-origin.trycloudflare.com",
-  "active_tunnel_url": "https://span-ratings-www-origin.trycloudflare.com",
-  "url": "https://span-ratings-www-origin.trycloudflare.com",
+  "live_url": "https://output-moved-interactions-physical.trycloudflare.com",
+  "active_tunnel_url": "https://output-moved-interactions-physical.trycloudflare.com",
+  "url": "https://output-moved-interactions-physical.trycloudflare.com",
   "owner": "lk0806",
   "repo": "lk0806.github.io",
-  "updated_at": "2026-10-26 18:53:35",
+  "updated_at": "2026-10-26 20:09:30",
   "status": "online"
 }
