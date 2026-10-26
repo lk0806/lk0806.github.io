@@ -1,14 +1,9 @@
 {
-  "live_url": "https://americans-document-def-july.trycloudflare.com",
-  "active_tunnel_url": "https://americans-document-def-july.trycloudflare.com",
-  "url": "https://americans-document-def-july.trycloudflare.com",
+  "live_url": "https://families-turning-warner-range.trycloudflare.com",
+  "active_tunnel_url": "https://families-turning-warner-range.trycloudflare.com",
+  "url": "https://families-turning-warner-range.trycloudflare.com",
   "owner": "lk0806",
   "repo": "lk0806.github.io",
-  "updated_at": "2026-10-26 07:55:00",
-  "status": "online",
-  "services": {
-    "playboy": "https://americans-document-def-july.trycloudflare.com/playboy",
-    "delta": "https://americans-document-def-july.trycloudflare.com/delta",
-    "jarvis": "https://americans-document-def-july.trycloudflare.com/jarvis"
-  }
+  "updated_at": "2026-10-26 15:49:46",
+  "status": "online"
 }
