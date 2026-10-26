@@ -1,9 +1,9 @@
 {
-  "live_url": "https://avenue-organised-arm-int.trycloudflare.com",
-  "active_tunnel_url": "https://avenue-organised-arm-int.trycloudflare.com",
-  "url": "https://avenue-organised-arm-int.trycloudflare.com",
+  "live_url": "https://span-ratings-www-origin.trycloudflare.com",
+  "active_tunnel_url": "https://span-ratings-www-origin.trycloudflare.com",
+  "url": "https://span-ratings-www-origin.trycloudflare.com",
   "owner": "lk0806",
   "repo": "lk0806.github.io",
-  "updated_at": "2026-10-26 16:21:24",
+  "updated_at": "2026-10-26 18:53:35",
   "status": "online"
 }
