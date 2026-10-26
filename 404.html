@@ -24,6 +24,7 @@
       cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
     }
     .tab-btn.active { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: #0891b2; }
+    .tab-btn.playboy { background: rgba(236, 72, 153, 0.2); border-color: #ec4899; color: #f472b6; }
     .tab-btn.cloud { border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
     .tab-btn.apk { background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5); color: #c7d2fe; }
     #viewport-frame {
@@ -34,33 +35,37 @@
     #hub-dashboard {
       position: fixed; top: 42px; left: 0; right: 0; bottom: 0;
       overflow-y: auto; padding: 20px 16px; z-index: 20;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       background: radial-gradient(circle at top, #0f172a 0%, #070d19 70%);
     }
     .hub-card {
-      width: 100%; max-width: 540px; background: rgba(15, 23, 42, 0.9);
+      width: 100%; max-width: 580px; background: rgba(15, 23, 42, 0.9);
       border: 1px solid #1e293b; border-radius: 18px; padding: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin-bottom: 25px;
     }
     .status-pill {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 11px; padding: 4px 10px; border-radius: 99px;
       background: #0f172a; border: 1px solid #334155; color: #38bdf8; margin-bottom: 12px;
     }
-    .grid-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .grid-tools { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+    @media (min-width: 480px) {
+      .grid-tools { grid-template-columns: 1fr 1fr; }
+    }
     .tool-tile {
       padding: 14px; border-radius: 14px; border: 1px solid #1e293b;
       background: #0b1324; text-decoration: none; color: #fff;
-      display: flex; flex-direction: column; gap: 4px; transition: all 0.2s;
+      display: flex; flex-direction: column; gap: 5px; transition: all 0.2s;
     }
     .tool-tile:hover { border-color: #06b6d4; transform: translateY(-2px); }
-    .tile-badge { font-size: 10px; font-family: monospace; color: #10b981; }
+    .tile-badge { font-size: 10px; font-family: monospace; }
   </style>
 </head>
 <body>
   <div id="top-bar">
     <div class="nav-group">
       <button onclick="openPCStream()" id="btn-pc" class="tab-btn active">🖥️ Laptop Live</button>
+      <a href="/playboy/" class="tab-btn playboy">🔥 Playboy & Mind OS</a>
       <a href="/delta/" class="tab-btn cloud">📈 Delta 24/7 Cloud</a>
       <a href="/decoder/" class="tab-btn cloud">🔢 Decoder v2.5</a>
       <button onclick="openSub('/jarvis')" class="tab-btn">🤖 Jarvis</button>
@@ -76,28 +81,39 @@
       <div class="status-pill" id="conn-pill">🔄 Checking Laptop Live Tunnel...</div>
       <h2 style="font-size: 19px; font-weight: 800; color: #fff;">Mahor 24/7 Permanent Command Center</h2>
       <p style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
-        Cloud tools (Delta Trading & Matrix Decoder) run <b>24/7 even when your laptop is OFF</b>.
+        All tools run <b>24/7 with auto-failover</b>. Click any tool below for instant access:
       </p>
 
       <div class="grid-tools">
-        <a href="/decoder/" class="tool-tile" style="border-color: rgba(6,182,212,0.4);">
-          <span class="tile-badge">🟢 24/7 ALWAYS ON (NO LAPTOP NEEDED)</span>
-          <b style="font-size: 15px; color: #22d3ee;">🔢 Matrix Decoder v2.5</b>
-          <span style="font-size: 11px; color: #94a3b8;">Live Disawar 03 Verified • Haruf & Crossing</span>
+        <!-- Playboy & Mind OS -->
+        <a href="/playboy/" class="tool-tile" style="border-color: rgba(236,72,153,0.5); background: linear-gradient(135deg, #0b1324, rgba(80,7,36,0.35)); grid-column: span 1;">
+          <span class="tile-badge" style="color:#f472b6;">🔥 24/7 ALWAYS ON • SMART WINGMAN</span>
+          <b style="font-size: 15px; color: #fb7185;">🔥 Playboy & Mind OS</b>
+          <span style="font-size: 11px; color: #cbd5e1;">Universal Archetypes • 1-Tap Copy Replies • Reverse Psychology • Live Call Whisper</span>
         </a>
 
+        <!-- Delta Master Shield -->
         <a href="/delta/" class="tool-tile" style="border-color: rgba(16,185,129,0.4);">
-          <span class="tile-badge">🟢 24/7 CLOUD SERVER</span>
+          <span class="tile-badge" style="color:#34d399;">🟢 24/7 CLOUD SERVER</span>
           <b style="font-size: 15px; color: #34d399;">📈 Delta Master Shield</b>
           <span style="font-size: 11px; color: #94a3b8;">KABOOM + MA ka BAAP Auto Bot</span>
         </a>
 
+        <!-- Matrix Decoder -->
+        <a href="/decoder/" class="tool-tile" style="border-color: rgba(6,182,212,0.4);">
+          <span class="tile-badge" style="color:#22d3ee;">🟢 24/7 ALWAYS ON</span>
+          <b style="font-size: 15px; color: #22d3ee;">🔢 Matrix Decoder v2.5</b>
+          <span style="font-size: 11px; color: #94a3b8;">Live Disawar 03 Verified • Haruf & Crossing</span>
+        </a>
+
+        <!-- Laptop Remote Screen -->
         <a href="javascript:void(0)" onclick="forceOpenTunnel()" class="tool-tile">
           <span class="tile-badge" id="pc-tile-status" style="color:#fbbf24;">⚡ WORKSTATION STREAM</span>
           <b style="font-size: 15px; color: #f8fafc;">🖥️ Laptop Remote Screen</b>
           <span style="font-size: 11px; color: #94a3b8;">Live Desktop Control & Terminal</span>
         </a>
 
+        <!-- Android APK -->
         <a href="/LaptopRemote.apk" download class="tool-tile" style="border-color: rgba(139,92,246,0.4);">
           <span class="tile-badge" style="color:#c4b5fd;">📦 ANDROID 11-15 VERIFIED (v3 SIGNED)</span>
           <b style="font-size: 15px; color: #ddd6fe;">📲 Download Android APK</b>
@@ -136,6 +152,8 @@
       window.location.replace('/decoder/');
     } else if (rawPath === '/delta') {
       window.location.replace('/delta/');
+    } else if (rawPath === '/playboy') {
+      window.location.replace('/playboy/');
     }
 
     function checkGateway() {
@@ -151,14 +169,16 @@
           return fetch(liveTunnelUrl + '/api/auth/status', { signal: ctrl.signal, mode: 'no-cors' })
             .then(() => {
               clearTimeout(timer);
-              document.getElementById('conn-pill').innerHTML = '🟢 Laptop Workstation ONLINE — Launching Stream...';
+              document.getElementById('conn-pill').innerHTML = '🟢 Laptop Workstation ONLINE';
               document.getElementById('pc-tile-status').innerText = '🟢 ONLINE NOW';
               const sub = (rawPath && rawPath !== '/') ? rawPath : '';
-              openIframe(liveTunnelUrl + sub + window.location.search);
+              if (sub && sub !== '') {
+                openIframe(liveTunnelUrl + sub + window.location.search);
+              }
             });
         })
         .catch(() => {
-          document.getElementById('conn-pill').innerHTML = '☁️ Laptop Stream Standby — <b>24/7 Cloud Tools Ready Below!</b>';
+          document.getElementById('conn-pill').innerHTML = '☁️ Laptop Stream Standby — <b>24/7 Cloud Tools Active!</b>';
           document.getElementById('pc-tile-status').innerText = '🌙 STANDBY (CLOUD ACTIVE)';
         });
     }
