@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LKM DIGITAL SOLUTIONS - Instant Self-Print Kiosk</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --card: #0f172a;
+      --border: #1e293b;
+      --cyan: #00f2fe;
+      --blue: #38bdf8;
+      --green: #10b981;
+      --yellow: #fde047;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+    
+    .kiosk-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(0,242,254,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .shop-header {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 14px;
+    }
+    .shop-name {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #00f2fe, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .shop-sub {
+      font-size: 0.85rem;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .shop-tagline {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .shop-phone {
+      display: inline-block;
+      margin-top: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--blue);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .form-group {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+    .input-field {
+      width: 100%;
+      background: #15223c;
+      border: 1px solid #23355b;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .input-field:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0,242,254,0.2);
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .dropzone-box {
+      border: 2px dashed var(--cyan);
+      background: rgba(0, 242, 254, 0.04);
+      border-radius: 14px;
+      padding: 24px 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .dropzone-box:active {
+      background: rgba(0, 242, 254, 0.12);
+      transform: scale(0.98);
+    }
+
+    .btn-send {
+      background: linear-gradient(135deg, #00f2fe 0%, #2563eb 100%);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 242, 254, 0.35);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-send:disabled {
+      background: #1e293b;
+      color: #64748b;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00f2fe, #10b981);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+
+    .success-box {
+      display: none;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 20px 16px;
+      border-radius: 14px;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .badges-strip {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .pill {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: #cbd5e1;
+    }
+    .footer-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="kiosk-card" id="mainCard">
+    <div class="shop-header">
+      <div class="shop-name">LKM DIGITAL SOLUTIONS</div>
+      <div class="shop-sub">⚡ इंस्टेंट डॉक्यूमेंट प्रिंट एवं फोटोकॉपी कियोस्क</div>
+      <div class="shop-tagline">Jan Seva Kendra & Cyber Cafe • No WhatsApp Saving Needed</div>
+      <div class="shop-phone">📞 8171557811 / 7017249368</div>
+    </div>
+
+    <!-- Customer Identifier -->
+    <div class="form-group">
+      <label>1. आपका नाम या मोबाइल नंबर *</label>
+      <input type="text" id="custName" class="input-field" placeholder="उदा. Rahul Sharma / 98765xxxxx" required>
+    </div>
+
+    <!-- Print Options -->
+    <div class="row-2">
+      <div class="form-group">
+        <label>2. प्रिंट प्रकार (Mode)</label>
+        <select id="printMode" class="input-field">
+          <option value="Black & White">ब्लैक & व्हाइट (B&W)</option>
+          <option value="Color">फुल कलर (Color)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>3. कॉपियां (Copies)</label>
+        <select id="copiesCount" class="input-field">
+          <option value="1">1 Copy</option>
+          <option value="2">2 Copies</option>
+          <option value="3">3 Copies</option>
+          <option value="4">4 Copies</option>
+          <option value="5">5 Copies</option>
+          <option value="10">10 Copies</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- File Dropzone -->
+    <div class="dropzone-box" onclick="document.getElementById('mobileFiles').click()">
+      <div style="font-size:2.4rem;">📂</div>
+      <div style="font-weight:800; font-size:1rem; color:var(--cyan);">Tap to Select Documents</div>
+      <div style="font-size:0.75rem; color:var(--muted);">आधार कार्ड, मार्कशीट, फोटो, PDF, रिज़्यूमे आदि</div>
+      <div id="fileCounter" style="font-size:0.85rem; font-weight:700; color:#fde047;">0 files selected</div>
+    </div>
+    <input type="file" id="mobileFiles" multiple accept="image/*,application/pdf,.doc,.docx" style="display:none;" onchange="onFilesSelected(this.files)">
+
+    <!-- Progress -->
+    <div class="progress-bar-wrap" id="progressWrap">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn-send" id="btnSend" onclick="uploadCustomerFiles()">
+      <span>🚀 काउंटर स्क्रीन पर भेजें (Send to Counter)</span>
+    </button>
+
+    <!-- Success Screen -->
+    <div class="success-box" id="successBox">
+      <div style="font-size:2.4rem;">✅</div>
+      <div style="font-weight:900; font-size:1.15rem; color:#fff;">डॉक्यूमेंट्स प्राप्त हो गए हैं!</div>
+      <div style="font-size:0.85rem; color:#d1fae5;" id="successDetail">Bhaiya ke computer screen par documents receive ho gaye hain.</div>
+      <div style="font-size:0.78rem; color:#93c5fd; margin-top:4px;">कृपया काउंटर पर अपना नाम बताकर तुरंत प्रिंट प्राप्त करें।</div>
+      <button class="btn-send" style="margin-top:12px; font-size:0.85rem; padding:10px 16px; background:#10b981;" onclick="resetForm()">➕ और डॉक्यूमेंट भेजें</button>
+    </div>
+
+    <div class="badges-strip">
+      <span class="pill">✔ नो नंबर सेविंग</span>
+      <span class="pill">✔ 100% सुरक्षित</span>
+      <span class="pill">✔ हाई स्पीड ट्रांसफर</span>
+    </div>
+
+    <div class="footer-note">
+      🔒 100% Direct Local Transfer to LKM Digital Solutions Counter PC
+    </div>
+  </div>
+
+  <script>
+    let selectedFiles = [];
+    let liveBackendUrl = "https://holland-enrolled-seed-females.trycloudflare.com";
+
+    // Auto-discover latest live tunnel from gateway.json
+    async function initGateway() {
+      try {
+        const res = await fetch('/gateway.json?t=' + Date.now());
+        const data = await res.json();
+        if (data.active_tunnel_url || data.live_url) {
+          liveBackendUrl = data.active_tunnel_url || data.live_url;
+          console.log("[GATEWAY] Active tunnel:", liveBackendUrl);
+        }
+      } catch (e) {
+        console.warn("[GATEWAY] Using fallback tunnel:", liveBackendUrl);
+      }
+    }
+    initGateway();
+
+    function onFilesSelected(files) {
+      if (!files || files.length === 0) return;
+      selectedFiles = Array.from(files);
+      document.getElementById("fileCounter").textContent = `${selectedFiles.length} file(s) selected: ` + selectedFiles.map(f => f.name).join(", ").slice(0, 40) + "...";
+      document.getElementById("btnSend").disabled = false;
+    }
+
+    async function uploadCustomerFiles() {
+      const name = document.getElementById("custName").value.trim();
+      if (!name) {
+        alert("कृपया अपना नाम या मोबाइल नंबर लिखें!");
+        document.getElementById("custName").focus();
+        return;
+      }
+      if (selectedFiles.length === 0) {
+        alert("कृपया पहले फाइल या डॉक्यूमेंट चुनें!");
+        document.getElementById("mobileFiles").click();
+        return;
+      }
+
+      const mode = document.getElementById("printMode").value;
+      const copies = document.getElementById("copiesCount").value;
+
+      const form = new FormData();
+      form.append("dir", "Customer_DropZone");
+      form.append("customer", `${name}_(${mode}_${copies}copies)`);
+      for (let f of selectedFiles) {
+        form.append("files", f);
+      }
+
+      const pWrap = document.getElementById("progressWrap");
+      const pFill = document.getElementById("progressFill");
+      const btn = document.getElementById("btnSend");
+
+      pWrap.style.display = "block";
+      pFill.style.width = "30%";
+      btn.disabled = true;
+      btn.textContent = "⏳ फाइलें ट्रांसफर हो रही हैं...";
+
+      try {
+        pFill.style.width = "75%";
+        const targetEndpoint = `${liveBackendUrl}/api/drive/upload`;
+        const res = await fetch(targetEndpoint, {
+          method: "POST",
+          body: form
+        });
+        const data = await res.json();
+        pFill.style.width = "100%";
+
+        if (data.ok) {
+          document.getElementById("successBox").style.display = "flex";
+          document.getElementById("successDetail").textContent = `कुल ${data.count} फाइलें काउंटर सिस्टम पर सफलतापूर्वक पहुँच गई हैं!`;
+          document.getElementById("btnSend").style.display = "none";
+          document.getElementById("mobileFiles").value = "";
+          selectedFiles = [];
+          document.getElementById("fileCounter").textContent = "0 files selected";
+        } else {
+          alert("Upload error: " + (data.error || "Failed"));
+          btn.disabled = false;
+          btn.textContent = "🚀 काउंटर स्क्रीन पर भेजें (Send to Counter)";
+        }
+      } catch (err) {
+        alert("Network Error: कृपया सुनिश्चित करें कि इंटरनेट चालू है। " + err);
+        btn.disabled = false;
+        btn.textContent = "🚀 काउंटर स्क्रीन पर भेजें (Send to Counter)";
+      } finally {
+        setTimeout(() => { pWrap.style.display = "none"; pFill.style.width = "0%"; }, 1200);
+      }
+    }
+
+    function resetForm() {
+      document.getElementById("successBox").style.display = "none";
+      document.getElementById("btnSend").style.display = "flex";
+      document.getElementById("btnSend").disabled = false;
+      document.getElementById("btnSend").textContent = "🚀 काउंटर स्क्रीन पर भेजें (Send to Counter)";
+      document.getElementById("fileCounter").textContent = "0 files selected";
+      document.getElementById("custName").value = "";
+    }
+  </script>
+</body>
+</html>
