@@ -518,8 +518,11 @@
       <!-- Live UPI QR Code Display -->
       <div class="upi-qr-display">
         <p style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Scan with Any UPI App (GPay, PhonePe, Paytm)</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D8279361573%40ybl%26pn%3DMAHOR%20ENTERPRISES%26am%3D549%26cu%3DINR" alt="UPI QR Code" id="modalQrImg">
-        <div class="upi-id-badge">UPI ID: 8279361573@ybl (MAHOR ENTERPRISES)</div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D8171557811%40ptyes%26pn%3DLalit%20Kumar%26am%3D549%26cu%3DINR" alt="UPI QR Code" id="modalQrImg">
+        <div class="upi-id-badge" id="modalUpiBadge">UPI ID: 8171557811@ptyes (Lalit Kumar)</div>
+        <a href="/gateway/pay.html" id="modalDirectPayBtn" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); color: #fff; text-decoration: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.88rem; margin-top: 10px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);">
+          <span>⚡</span> Pay via 1-Tap UPI (GPay / PhonePe / Paytm)
+        </a>
       </div>
 
       <form class="checkout-form" id="checkoutForm" onsubmit="return false;">
