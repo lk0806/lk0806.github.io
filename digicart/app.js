@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     uploadedPhotoUrl: null,
-    merchantPhone: '918279361573',
-    merchantUpi: '8279361573@ybl',
-    merchantName: 'MAHOR ENTERPRISES'
+    merchantPhone: '918171557811',
+    merchantUpi: '8171557811@ptyes',
+    merchantName: 'Lalit Kumar'
   };
 
   // DOM Elements
@@ -210,9 +210,21 @@ document.addEventListener('DOMContentLoaded', () => {
       modalPayNote.textContent = details.note;
     }
 
-    // Dynamic UPI Intent QR generation
+    // Dynamic UPI Intent QR generation & Gateway URL
+    const modalDirectPayBtn = document.getElementById('modalDirectPayBtn');
+    const modalUpiBadge = document.getElementById('modalUpiBadge');
+    const orderId = 'MM-' + Date.now().toString().slice(-6);
+
+    if (modalUpiBadge) {
+      modalUpiBadge.textContent = `UPI ID: ${state.merchantUpi} (${state.merchantName})`;
+    }
+
+    if (modalDirectPayBtn) {
+      modalDirectPayBtn.href = `/gateway/pay.html?amount=${details.amount}&name=${encodeURIComponent(state.merchantName)}&upi=${encodeURIComponent(state.merchantUpi)}&order_id=${orderId}&redirect=/gateway/thank-you.html`;
+    }
+
     if (qrImage) {
-      const upiUri = `upi://pay?pa=${state.merchantUpi}&pn=${encodeURIComponent(state.merchantName)}&am=${details.amount}&cu=INR&tn=${encodeURIComponent('Magic Mirror Order ' + shapeLabel)}`;
+      const upiUri = `upi://pay?pa=${state.merchantUpi}&pn=${encodeURIComponent(state.merchantName)}&am=${details.amount}&cu=INR&tn=${encodeURIComponent('Order ' + orderId)}`;
       const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`;
       qrImage.src = qrApi;
     }
