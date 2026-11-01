@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Payment Successful - KaroPay Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .thankyou-card {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: card-appear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes card-appear {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .success-icon-wrap {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 16px;
+      background: #ecfdf5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .success-icon-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed #10b981;
+      animation: rotate-dashed 12s linear infinite;
+    }
+    @keyframes rotate-dashed {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .success-svg {
+      width: 44px;
+      height: 44px;
+      stroke: #10b981;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: draw-check 0.5s ease-out 0.2s forwards;
+    }
+    @keyframes draw-check { to { stroke-dashoffset: 0; } }
+    .badge-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .thankyou-title { font-size: 22px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .thankyou-sub { font-size: 13px; color: #64748b; margin-bottom: 18px; }
+    .amount-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .amount-label { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .amount-val { font-size: 28px; font-weight: 800; color: #16a34a; font-family: 'JetBrains Mono', monospace; }
+    .details-table {
+      width: 100%;
+      text-align: left;
+      font-size: 12.5px;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .details-table tr { border-bottom: 1px solid #f1f5f9; }
+    .details-table td { padding: 9px 4px; }
+    .details-table td.lbl { color: #64748b; font-weight: 500; width: 40%; }
+    .details-table td.val { color: #0f172a; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-align: right; word-break: break-all; }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      margin-bottom: 10px;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+    .btn-wa:hover { background: #20ba5a; transform: translateY(-1px); }
+    .btn-dl {
+      background: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+    .btn-dl:hover { background: #4338ca; transform: translateY(-1px); }
+    .btn-receipt {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      font-size: 12px;
+      padding: 10px 14px;
+    }
+    .btn-receipt:hover { background: #e2e8f0; }
+    .wa-prompt-box {
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+      color: #854d0e;
+      text-align: left;
+      line-height: 1.45;
+    }
+    .footer-note { font-size: 11px; color: #94a3b8; margin-top: 10px; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .action-btn, .wa-prompt-box, .footer-note { display: none !important; }
+      .thankyou-card { box-shadow: none; border: 1px solid #ccc; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="thankyou-card">
+    <div class="badge-verified">
+      <i class="fa-solid fa-circle-check"></i> 100% Verified Payment
+    </div>
+
+    <div class="success-icon-wrap">
+      <svg class="success-svg" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <h1 class="thankyou-title">Payment Successful!</h1>
+    <p class="thankyou-sub">&#2349;&#2369;&#2327;&#2340;&#2366;&#2344; &#2360;&#2347;&#2354;&#2340;&#2366;&#2348;&#2370;&#2352;&#2381;&#2357;&#2325; &#2346;&#2381;&#2352;&#2366;&#2346;&#2381;&#2340; &#2361;&#2369;&#2310;</p>
+
+    <div class="amount-box">
+      <div class="amount-label">Amount Paid</div>
+      <div class="amount-val" id="disp_amt">&#8377;499.00</div>
+    </div>
+
+    <table class="details-table">
+      <tr>
+        <td class="lbl">Order ID</td>
+        <td class="val" id="disp_ord">ORD_101</td>
+      </tr>
+      <tr>
+        <td class="lbl">UTR / Ref No.</td>
+        <td class="val" id="disp_utr">430582910481</td>
+      </tr>
+      <tr>
+        <td class="lbl">Merchant</td>
+        <td class="val" id="disp_merch" style="font-family: inherit;">DigiCart India</td>
+      </tr>
+      <tr>
+        <td class="lbl">Date & Time</td>
+        <td class="val" id="disp_date">Just Now</td>
+      </tr>
+      <tr>
+        <td class="lbl">Status</td>
+        <td class="val" style="color: #16a34a;">PAID &#10003;</td>
+      </tr>
+    </table>
+
+    <div class="wa-prompt-box">
+      <i class="fa-brands fa-whatsapp" style="color: #16a34a; font-size: 14px; margin-right: 4px;"></i>
+      <strong>VIP WhatsApp Order Confirmation:</strong><br>
+      &#2321;&#2377;&#2352;&#2381;&#2337;&#2352; &#2342;&#2375;&#2344;&#2375; &#2325;&#2375; &#2348;&#2366;&#2342; &#2309;&#2346;&#2344;&#2368; &#2347;&#2379;&#2335;&#2379; &#2325;&#2375; &#2360;&#2366;&#2341; &#2309;&#2346;&#2344;&#2366; &#2321;&#2377;&#2352;&#2381;&#2337;&#2352; &#2310;&#2311;&#2337;&#2368; &#2344;&#2308;&#2348;&#2352; &#2349;&#2375;&#2336;&#2375;&#2306;&#2367;
+    </div>
+
+    <!-- VIP WhatsApp Button -->
+    <a href="#" id="wa_btn" target="_blank" class="action-btn btn-wa">
+      <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Send Photo & Confirm on WhatsApp
+    </a>
+
+    <!-- Instant Product Download -->
+    <a href="/thank_you_download.html" id="dl_btn" class="action-btn btn-dl">
+      <i class="fa-solid fa-cloud-arrow-down" style="font-size: 16px;"></i> Access & Download Bundle
+    </a>
+
+    <!-- Print Receipt -->
+    <button type="button" onclick="window.print()" class="action-btn btn-receipt">
+      <i class="fa-solid fa-print"></i> Print Official Receipt
+    </button>
+
+    <div class="footer-note">
+      Powered by KaroPay Pro Direct UPI Settlement &bull; 0% Fee Platform
+    </div>
+  </div>
+
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var amount = params.get('amount') || '499';
+    var amtNum = parseFloat(amount) || 499.0;
+    var orderId = params.get('txn') || params.get('order_id') || ('ORD-' + Math.floor(Date.now() / 1000));
+    var utr = params.get('utr') || '430582910481';
+    var merchant = params.get('name') || 'DigiCart India / KaroPay Pro';
+
+    document.getElementById('disp_amt').textContent = '\u20B9' + amtNum.toFixed(2);
+    document.getElementById('disp_ord').textContent = orderId;
+    document.getElementById('disp_utr').textContent = utr;
+    document.getElementById('disp_merch').textContent = merchant;
+    document.getElementById('disp_date').textContent = new Date().toLocaleString();
+
+    var waMsg = "नमस्ते DigiCart India, मैंने ₹" + amtNum.toFixed(2) + " का भुगतान पूरा कर लिया है।\n\n📌 Order ID: " + orderId + "\n💰 Amount: ₹" + amtNum.toFixed(2) + "\n🔢 UTR/Ref: " + utr + "\n\nकृपया मेरा आर्डर कन्फर्म करके डिजिटल प्रोडक्ट/सर्विस एक्टिवेट करें।";
+    document.getElementById('wa_btn').href = "https://wa.me/918171557811?text=" + encodeURIComponent(waMsg);
+
+    document.getElementById('dl_btn').href = "/thank_you_download.html?isKaroPaid=true&txn=" + encodeURIComponent(orderId) + "&utr=" + encodeURIComponent(utr) + "&auth=PRO_VERIFIED";
+
+    // Auto-fire Meta Pixel Purchase Conversion for Facebook Ads ROAS
+    try {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: amtNum,
+          currency: 'INR',
+          content_name: 'DigiCart Order ' + orderId,
+          content_type: 'product'
+        });
+        console.log('[Meta Pixel] Purchase Event Tracked: ₹' + amtNum);
+      }
+    } catch(e) {
+      console.warn('[Meta Pixel] Error:', e);
+    }
+  </script>
+
+</body>
+</html>
