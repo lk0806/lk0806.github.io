@@ -263,20 +263,21 @@
     var params = new URLSearchParams(window.location.search);
     var amount = params.get('amount') || '499';
     var amtNum = parseFloat(amount) || 499.0;
-    var rawName = params.get('name') || 'Lalit Kumar';
-    var upiId = params.get('upi') || '8171557811@ptyes';
+    var rawName = params.get('name') || 'Paytm Merchant';
+    var upiId = params.get('upi') || 'paytmqr2810050501016bn8zxfz5xpf@paytm';
     var orderId = params.get('order_id') || ('ORD-' + Math.floor(Date.now() / 1000));
     var redirectUrl = params.get('redirect') || '/gateway/thank-you.html';
 
-    // Anti-Paytm Block Protocol: If personal handle (@ybl, @ptyes), use personal name to prevent Paytm Risk Block
-    var isMerchantVpa = upiId.toLowerCase().includes('bharatpe') || upiId.toLowerCase().includes('paytm') || upiId.toLowerCase().includes('icici');
-    var payeeName = isMerchantVpa ? rawName : 'Lalit Kumar';
+    // Official Paytm Merchant Token
+    var paytmQrToken = '2810050501016BN8ZXFZ5XPF';
+    var isMerchantVpa = upiId.toLowerCase().includes('paytmqr') || upiId.toLowerCase().includes('bharatpe') || upiId.toLowerCase().includes('paytm');
+    var payeeName = isMerchantVpa ? 'Paytm Merchant' : rawName;
 
     // 2. Render Page Elements
     document.getElementById('disp_amount').textContent = '\u20B9' + amtNum.toFixed(2);
-    document.getElementById('disp_name').textContent = rawName;
+    document.getElementById('disp_name').textContent = payeeName;
     document.getElementById('disp_upi_text').textContent = 'UPI: ' + upiId;
-    document.getElementById('disp_footer').textContent = 'Powered by KaroPay Pro Direct UPI \u2022 Order: ' + orderId;
+    document.getElementById('disp_footer').textContent = 'Powered by KaroPay Pro Verified Merchant UPI \u2022 Order: ' + orderId;
 
     // 3. Build Universal & App-Specific UPI URLs
     var cleanNote = 'Payment ' + orderId;
@@ -287,7 +288,7 @@
       '&cu=INR';
 
     if (isMerchantVpa) {
-      upiQuery += '&mc=5499&mode=02';
+      upiQuery += '&paytmqr=' + encodeURIComponent(paytmQrToken) + '&mc=5499&mode=02';
     }
 
     var universalIntent = 'upi://pay?' + upiQuery;
