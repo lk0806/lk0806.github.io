@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     uploadedPhotoUrl: null,
     merchantPhone: '918171557811',
-    merchantUpi: '8171557811@ptyes',
-    merchantName: 'Lalit Kumar'
+    merchantUpi: 'paytmqr2810050501016bn8zxfz5xpf@paytm',
+    merchantName: 'Paytm Merchant'
   };
 
   // DOM Elements
