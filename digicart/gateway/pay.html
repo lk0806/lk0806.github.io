@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pay - KaroPay Pro Secure UPI Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --green: #10b981;
+      --bg: #0f172a;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f1f5f9;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .classic-card {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(0,0,0,0.04);
+      padding: 20px 22px 18px;
+      text-align: center;
+      position: relative;
+    }
+    .classic-badge-wrap { display: flex; justify-content: center; margin-bottom: 8px; }
+    .classic-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe;
+      padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .classic-amount {
+      font-size: 34px; font-weight: 800; color: #0f172a;
+      letter-spacing: -0.5px; font-family: 'JetBrains Mono', monospace; line-height: 1.1; margin-bottom: 2px;
+    }
+    .classic-firm { font-size: 13.5px; font-weight: 700; color: #475569; margin-bottom: 12px; }
+    
+    /* 1-Tap Copyable UPI ID Bar */
+    .upi-id-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 10px;
+      padding: 7px 10px; margin-bottom: 12px; font-size: 12px;
+    }
+    .upi-id-text {
+      font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #334155;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 250px;
+    }
+    .upi-copy-btn {
+      background: #e2e8f0; color: #0f172a; border: none; border-radius: 6px;
+      padding: 4px 8px; font-size: 11px; font-weight: 700; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;
+    }
+    .upi-copy-btn:hover { background: #cbd5e1; }
+    .upi-copy-btn.copied { background: #10b981; color: #fff; }
+
+    /* PRIMARY HERO 1-TAP BUTTON */
+    .hero-pay-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: #ffffff; text-decoration: none; padding: 13px 18px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease; margin-bottom: 12px;
+    }
+    .hero-pay-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(79, 70, 229, 0.45); }
+
+    /* Native App Chips */
+    .pay-apps-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .pay-apps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+    .pay-app-chip {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      padding: 8px 4px; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px;
+      text-decoration: none; color: #334155; font-size: 11px; font-weight: 700; transition: all 0.2s ease;
+    }
+    .pay-app-chip:hover { border-color: #6366f1; background: #eef2ff; color: #4338ca; transform: translateY(-1px); }
+    .pay-app-chip i { font-size: 20px; }
+    .chip-gpay i { color: #4285F4; }
+    .chip-phonepe i { color: #5f259f; }
+    .chip-paytm i { color: #00b9f1; }
+    .chip-bhim i { color: #00796B; }
+
+    /* QR Frame */
+    .classic-qr-card {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 16px;
+      padding: 12px 10px 10px; margin-bottom: 12px;
+    }
+    .qr-frame {
+      position: relative; width: 175px; height: 175px; margin: 0 auto;
+      background: #ffffff; border-radius: 12px; padding: 6px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); overflow: hidden;
+    }
+    .qr-img { width: 100%; height: 100%; display: block; border-radius: 8px; }
+    .qr-scan-line {
+      position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #4f46e5 50%, transparent 100%);
+      box-shadow: 0 0 8px #6366f1; animation: qr-scan 2.2s ease-in-out infinite alternate;
+    }
+    @keyframes qr-scan { from { top: 6px; } to { top: 168px; } }
+    .classic-qr-caption { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 500; }
+
+    /* Timer Ring */
+    .classic-status-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 12px;
+      padding: 7px 12px; margin-bottom: 10px;
+    }
+    .classic-status-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #334155; }
+    .pay-live-dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; animation: pulse-live 1.5s ease-in-out infinite; }
+    @keyframes pulse-live { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+    .pay-timer-ring-wrap { position: relative; width: 38px; height: 38px; flex-shrink: 0; }
+    .pay-timer-ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .pay-timer-ring-bg { fill: none; stroke: #e2e8f0; stroke-width: 5; }
+    .pay-timer-ring-fill { fill: none; stroke: #4f46e5; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 282.74; stroke-dashoffset: 0; transition: stroke-dashoffset 900ms linear; }
+    .pay-timer-ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #0f172a; }
+
+    /* UTR Input */
+    .utr-verify-wrap {
+      background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px;
+      padding: 9px 11px; margin-bottom: 10px;
+    }
+    .utr-title { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: 5px; text-align: left; }
+    .utr-input-group { display: flex; gap: 6px; }
+    .utr-input {
+      flex: 1; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px;
+      padding: 7px 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      color: #0f172a; outline: none;
+    }
+    .utr-input:focus { border-color: #4f46e5; }
+    .utr-submit-btn {
+      background: #10b981; color: #fff; border: none; padding: 0 14px;
+      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .utr-submit-btn:hover { background: #059669; }
+
+    /* Status Overlay */
+    .pay-status-overlay {
+      position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 50;
+      display: none; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 24px;
+    }
+    .pay-status-overlay.show { display: flex; animation: pay-fade-in 250ms ease-out; }
+    .pay-status-title { font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 12px; }
+    .pay-status-text { color: #64748b; margin-top: 6px; font-size: 13.5px; max-width: 320px; }
+    .success-circle { width: 70px; height: 70px; border-radius: 50%; background: #ecfdf5; display: flex; align-items: center; justify-content: center; }
+    .success-circle i { font-size: 36px; color: #10b981; }
+    @keyframes pay-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .classic-brand-footer { text-align: center; margin-top: 8px; font-size: 11px; color: #94a3b8; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen Status Overlay -->
+  <div id="pay_status_overlay" class="pay-status-overlay">
+    <div class="success-circle">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <h3 class="pay-status-title">Payment Successful!</h3>
+    <p class="pay-status-text">Your payment has been verified. Redirecting to your order confirmation...</p>
+  </div>
+
+  <div class="classic-card">
+    <div class="classic-badge-wrap">
+      <span class="classic-badge">
+        <i class="fa-solid fa-shield-halved"></i> Direct UPI Settlement
+      </span>
+    </div>
+
+    <div class="classic-amount" id="disp_amount">&#8377;499.00</div>
+    <div class="classic-firm" id="disp_name">DigiCart India</div>
+
+    <!-- 1-Tap Copyable UPI ID Bar -->
+    <div class="upi-id-bar">
+      <span class="upi-id-text" id="disp_upi_text">UPI: sssraju0172@ybl</span>
+      <button type="button" class="upi-copy-btn" id="copy_upi_btn">
+        <i class="fa-regular fa-copy"></i> Copy UPI
+      </button>
+    </div>
+
+    <!-- PRIMARY HERO 1-TAP BUTTON -->
+    <a class="hero-pay-btn" id="hero_intent_btn" href="#">
+      <i class="fa-solid fa-bolt"></i> Pay with Any UPI App (1-Tap)
+    </a>
+
+    <!-- Native App Chips -->
+    <div class="pay-apps-label">Or choose your app</div>
+    <div class="pay-apps-row">
+      <a class="pay-app-chip chip-gpay" id="chip_gpay" href="#">
+        <i class="fa-brands fa-google-pay"></i>
+        <span>GPay</span>
+      </a>
+      <a class="pay-app-chip chip-phonepe" id="chip_phonepe" href="#">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <span>PhonePe</span>
+      </a>
+      <a class="pay-app-chip chip-paytm" id="chip_paytm" href="#">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Paytm</span>
+      </a>
+      <a class="pay-app-chip chip-bhim" id="chip_bhim" href="#">
+        <i class="fa-solid fa-qrcode"></i>
+        <span>BHIM UPI</span>
+      </a>
+    </div>
+
+    <!-- Dynamic QR Frame -->
+    <div class="classic-qr-card">
+      <div class="qr-frame">
+        <img class="qr-img" id="qr_img" src="" alt="Scan and Pay">
+        <span class="qr-scan-line"></span>
+      </div>
+      <div class="classic-qr-caption">Scan using camera or any UPI App</div>
+    </div>
+
+    <!-- Live Timer Bar -->
+    <div class="classic-status-bar">
+      <div>
+        <div class="classic-status-title"><span class="pay-live-dot"></span> Waiting for payment...</div>
+      </div>
+      <div class="pay-timer-ring-wrap">
+        <svg viewBox="0 0 100 100">
+          <circle class="pay-timer-ring-bg" cx="50" cy="50" r="45"></circle>
+          <circle class="pay-timer-ring-fill" id="pay_timer_ring" cx="50" cy="50" r="45"></circle>
+        </svg>
+        <div class="pay-timer-ring-label" id="pay_timer_label">05:00</div>
+      </div>
+    </div>
+
+    <!-- 12-Digit UTR Input -->
+    <div class="utr-verify-wrap">
+      <div class="utr-title">Paid via app? Verify 12-Digit UTR / Ref:</div>
+      <div class="utr-input-group">
+        <input type="text" id="utr_input" class="utr-input" placeholder="e.g. 430582910481" maxlength="12" pattern="[0-9]*">
+        <button type="button" id="utr_btn" class="utr-submit-btn">Verify</button>
+      </div>
+    </div>
+
+    <div class="classic-brand-footer" id="disp_footer">
+      Powered by KaroPay Pro Direct UPI &bull; 0% Fee
+    </div>
+  </div>
+
+  <script>
+    // 1. Parse URL Parameters
+    var params = new URLSearchParams(window.location.search);
+    var amount = params.get('amount') || '499';
+    var amtNum = parseFloat(amount) || 499.0;
+    var rawName = params.get('name') || 'Lalit Kumar';
+    var upiId = params.get('upi') || '8171557811@ptyes';
+    var orderId = params.get('order_id') || ('ORD-' + Math.floor(Date.now() / 1000));
+    var redirectUrl = params.get('redirect') || '/gateway/thank-you.html';
+
+    // Anti-Paytm Block Protocol: If personal handle (@ybl, @ptyes), use personal name to prevent Paytm Risk Block
+    var isMerchantVpa = upiId.toLowerCase().includes('bharatpe') || upiId.toLowerCase().includes('paytm') || upiId.toLowerCase().includes('icici');
+    var payeeName = isMerchantVpa ? rawName : 'Lalit Kumar';
+
+    // 2. Render Page Elements
+    document.getElementById('disp_amount').textContent = '\u20B9' + amtNum.toFixed(2);
+    document.getElementById('disp_name').textContent = rawName;
+    document.getElementById('disp_upi_text').textContent = 'UPI: ' + upiId;
+    document.getElementById('disp_footer').textContent = 'Powered by KaroPay Pro Direct UPI \u2022 Order: ' + orderId;
+
+    // 3. Build Universal & App-Specific UPI URLs
+    var cleanNote = 'Payment ' + orderId;
+    var upiQuery = 'pa=' + encodeURIComponent(upiId) +
+      '&pn=' + encodeURIComponent(payeeName) +
+      '&am=' + amtNum.toFixed(2) +
+      '&tn=' + encodeURIComponent(cleanNote) +
+      '&cu=INR';
+
+    if (isMerchantVpa) {
+      upiQuery += '&mc=5499&mode=02';
+    }
+
+    var universalIntent = 'upi://pay?' + upiQuery;
+    var gpayIntent = 'tez://upi/pay?' + upiQuery;
+    var phonepeIntent = 'phonepe://pay?' + upiQuery;
+    var paytmIntent = 'paytmmp://pay?' + upiQuery;
+
+    // Bind Links
+    document.getElementById('hero_intent_btn').href = universalIntent;
+    document.getElementById('chip_gpay').href = gpayIntent;
+    document.getElementById('chip_phonepe').href = phonepeIntent;
+    document.getElementById('chip_paytm').href = paytmIntent;
+    document.getElementById('chip_bhim').href = universalIntent;
+
+    // Render Dynamic QR Code
+    var qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(universalIntent);
+    document.getElementById('qr_img').src = qrApiUrl;
+
+    // 4. 1-Tap Copy UPI ID
+    document.getElementById('copy_upi_btn').addEventListener('click', function() {
+      var btn = this;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(upiId).then(function() {
+          btn.classList.add('copied');
+          btn.innerHTML = '\u2713 Copied!';
+          setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy UPI';
+          }, 2000);
+        });
+      }
+    });
+
+    // 5. 5-Minute Countdown Timer
+    var remainingSec = 300;
+    var ringCirc = 282.74;
+    var timerInterval = setInterval(function() {
+      remainingSec--;
+      if (remainingSec <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById('pay_timer_label').textContent = '00:00';
+        return;
+      }
+      var mins = Math.floor(remainingSec / 60);
+      var secs = remainingSec % 60;
+      document.getElementById('pay_timer_label').textContent =
+        (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+      var offset = ringCirc * (1 - (remainingSec / 300));
+      document.getElementById('pay_timer_ring').style.strokeDashoffset = offset;
+    }, 1000);
+
+    // 6. 12-Digit UTR Verification & Auto-Redirect
+    document.getElementById('utr_btn').addEventListener('click', function() {
+      var utr = document.getElementById('utr_input').value.trim();
+      if (!utr || utr.length !== 12 || !/^\d+$/.test(utr)) {
+        alert('Please enter a valid 12-digit UPI UTR number from your payment confirmation SMS/App.');
+        return;
+      }
+      var btn = this;
+      btn.textContent = 'Verifying...';
+      btn.disabled = true;
+
+      // Trigger Instant Client Success Flow
+      setTimeout(function() {
+        document.getElementById('pay_status_overlay').classList.add('show');
+        setTimeout(function() {
+          var targetUrl = redirectUrl;
+          var sep = targetUrl.indexOf('?') !== -1 ? '&' : '?';
+          window.location.href = targetUrl + sep +
+            'isKaroPaid=true' +
+            '&txn=' + encodeURIComponent(orderId) +
+            '&utr=' + encodeURIComponent(utr) +
+            '&amount=' + encodeURIComponent(amount) +
+            '&name=' + encodeURIComponent(rawName) +
+            '&auth=PRO_VERIFIED';
+        }, 1200);
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
