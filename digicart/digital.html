@@ -244,15 +244,19 @@
         <img src="" alt="UPI QR Code" id="digiQrImg">
       </div>
 
-      <div class="upi-id-tag">UPI ID: 8279361573@ybl (MAHOR ENTERPRISES)</div>
+      <div class="upi-id-tag" id="digiUpiTag">UPI ID: 8171557811@ptyes (Lalit Kumar)</div>
 
       <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 12px; margin-bottom: 16px; font-size: 0.85rem; color: #34d399; text-align: left;">
         <strong>🚀 How Delivery Works:</strong>
-        <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 4px;">1. Scan QR Code & complete payment of <span id="digiModalPrice" style="font-weight: 800; color: #fff;">₹199</span>.<br>2. Click the button below to send payment screenshot on WhatsApp.<br>3. Automated Google Drive link will be unlocked instantly!</p>
+        <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 4px;">1. Pay via 1-Tap UPI or scan QR Code for <span id="digiModalPrice" style="font-weight: 800; color: #fff;">₹199</span>.<br>2. Automatic confirmation unlocks your Google Drive bundle immediately!<br>3. Instant copy also delivered to your WhatsApp.</p>
       </div>
 
-      <a href="#" class="btn-whatsapp-instant" id="digiWhatsAppBtn" target="_blank">
-        <span>💬</span> CONFIRM PAYMENT & GET DRIVE LINK
+      <a href="/gateway/pay.html" class="btn-whatsapp-instant" id="digiDirectPayBtn" style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); margin-bottom: 10px;">
+        <span>⚡</span> PAY NOW VIA 1-TAP UPI (GPAY / PHONEPE / PAYTM)
+      </a>
+
+      <a href="#" class="btn-whatsapp-instant" id="digiWhatsAppBtn" target="_blank" style="background: #25d366;">
+        <span>💬</span> CONFIRM ON WHATSAPP & GET DRIVE LINK
       </a>
     </div>
   </div>
@@ -277,24 +281,31 @@
       const waBtn = document.getElementById('digiWhatsAppBtn');
       const buttons = document.querySelectorAll('.open-digital-checkout');
 
-      const merchantUpi = '8279361573@ybl';
-      const merchantName = 'MAHOR ENTERPRISES';
-      const merchantPhone = '918279361573';
+      const merchantUpi = '8171557811@ptyes';
+      const merchantName = 'Lalit Kumar';
+      const merchantPhone = '918171557811';
+      const directPayBtn = document.getElementById('digiDirectPayBtn');
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           const title = btn.dataset.title;
           const price = btn.dataset.price;
+          const orderId = 'DIGI-' + Date.now().toString().slice(-6);
 
           titleEl.textContent = title;
           priceEl.textContent = `₹${price}`;
 
+          // Direct KaroPay Pro Gateway URL
+          if (directPayBtn) {
+            directPayBtn.href = `/gateway/pay.html?amount=${price}&name=${encodeURIComponent('DigiCart - ' + title)}&upi=${encodeURIComponent(merchantUpi)}&order_id=${orderId}&redirect=/gateway/thank-you.html`;
+          }
+
           // UPI URI
-          const upiUri = `upi://pay?pa=${merchantUpi}&pn=${encodeURIComponent(merchantName)}&am=${price}&cu=INR&tn=${encodeURIComponent('Digital Bundle: ' + title)}`;
+          const upiUri = `upi://pay?pa=${merchantUpi}&pn=${encodeURIComponent(merchantName)}&am=${price}&cu=INR&tn=${encodeURIComponent('Order ' + orderId)}`;
           qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`;
 
           // WhatsApp Message
-          const waText = `🚀 *DIGICART DIGITAL ORDER CONFIRMATION* 🚀%0A------------------------------------%0A*Bundle:* ${encodeURIComponent(title)}%0A*Amount Paid:* ₹${price}%0A*UPI ID:* ${merchantUpi}%0A%0A*Customer Status:* I have scanned the QR code and completed my payment. Please send my Google Drive download link to this WhatsApp number!`;
+          const waText = `🚀 *DIGICART DIGITAL ORDER CONFIRMATION* 🚀%0A------------------------------------%0A*Bundle:* ${encodeURIComponent(title)}%0A*Order ID:* ${orderId}%0A*Amount Paid:* ₹${price}%0A*UPI ID:* ${merchantUpi}%0A%0A*Customer Status:* I have completed my payment. Please confirm and verify!`;
           waBtn.href = `https://wa.me/${merchantPhone}?text=${waText}`;
 
           modal.classList.add('active');
