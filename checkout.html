@@ -445,10 +445,11 @@
       document.getElementById('welcomeName').textContent = name;
       document.getElementById('badgePassId').textContent = 'PASS #' + passId;
 
-      const payeeUpi = '8171557811@ptyes';
-      const payeeName = 'Lalit Kumar';
+      const payeeUpi = 'paytmqr2810050501016bn8zxfz5xpf@paytm';
+      const payeeName = 'Paytm Merchant';
+      const paytmQrToken = '2810050501016BN8ZXFZ5XPF';
       const cleanNote = `Order_${phone}`;
-      const upiQuery = `pa=${encodeURIComponent(payeeUpi)}&pn=${encodeURIComponent(payeeName)}&am=199&cu=INR&tn=${encodeURIComponent(cleanNote)}`;
+      const upiQuery = `pa=${encodeURIComponent(payeeUpi)}&pn=${encodeURIComponent(payeeName)}&paytmqr=${encodeURIComponent(paytmQrToken)}&am=199&cu=INR&tn=${encodeURIComponent(cleanNote)}&mc=5499`;
 
       const upiUrl = `upi://pay?${upiQuery}`;
       document.getElementById('intentPayBtn').href = upiUrl;
