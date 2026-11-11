@@ -3,27 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Lalit Remote Workstation & JARVIS OS</title>
+  <title>JARVIS OS — 24/7 Cloud & Remote Workstation</title>
   <link rel="icon" href="/favicon.ico">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #070d19; }
     #viewport-frame {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100%; height: 100%;
-      border: none;
-      outline: none;
-      z-index: 10;
-      background: #070d19;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%; height: 100%; border: none; outline: none;
+      z-index: 10; background: #070d19; display: none;
     }
     #loading-splash {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: #070d19;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 5;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #070d19; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; z-index: 5;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: #38bdf8;
     }
@@ -34,53 +27,63 @@
 <body>
   <div id="loading-splash">
     <div class="pulse-ring"></div>
-    <div style="font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; color: #94a3b8;">CONNECTING TO WORKSTATION...</div>
+    <div id="splash-msg" style="font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; color: #94a3b8;">CONNECTING TO WORKSTATION / CLOUD JARVIS...</div>
   </div>
-
   <iframe
     id="viewport-frame"
     allow="microphone; camera; autoplay; display-capture; clipboard-read; clipboard-write; fullscreen"
-    style="display:none;"
   ></iframe>
-
   <script>
     (function() {
+      var CLOUD_JARVIS = "https://delta-master-shield-portal.onrender.com/jarvis";
       var rawPath = window.location.pathname || "";
       var cleanPath = rawPath.replace(/\/+$/, "");
-      var sub = (cleanPath && cleanPath !== "/") ? cleanPath : "";
-      
-      var gatewayJsonUrl = window.location.origin + '/gateway.json?t=' + Date.now();
-      
-      fetch(gatewayJsonUrl)
+      var sub = (cleanPath && cleanPath !== "/") ? cleanPath : "/jarvis";
+      var frame = document.getElementById("viewport-frame");
+      var splash = document.getElementById("loading-splash");
+      var splashMsg = document.getElementById("splash-msg");
+      var loaded = false;
+
+      function mountDest(url, label) {
+        if (loaded) return;
+        loaded = true;
+        if (splashMsg && label) splashMsg.innerText = label;
+        frame.src = url;
+        frame.onload = function() {
+          if (splash) splash.style.display = "none";
+          frame.style.display = "block";
+        };
+        setTimeout(function() {
+          if (splash) splash.style.display = "none";
+          frame.style.display = "block";
+        }, 1200);
+      }
+
+      fetch(window.location.origin + "/gateway.json?t=" + Date.now())
         .then(function(res) {
           if (!res.ok) throw new Error("Gateway JSON unavailable");
           return res.json();
         })
         .then(function(data) {
-          if (data && data.live_url) {
-            var destination = data.live_url.replace(/\/$/, '') + sub + window.location.search;
-            var frame = document.getElementById('viewport-frame');
-            frame.src = destination;
-            frame.onload = function() {
-              var splash = document.getElementById('loading-splash');
-              if (splash) splash.style.display = 'none';
-              frame.style.display = 'block';
-            };
-            setTimeout(function() {
-              var splash = document.getElementById('loading-splash');
-              if (splash) splash.style.display = 'none';
-              frame.style.display = 'block';
-            }, 1500);
-          } else {
-            document.getElementById('loading-splash').innerHTML = '<div style="color:#ef4444;font-size:0.9rem;">Workstation is currently sleeping.</div>';
-          }
+          var liveUrl = (data && (data.live_url || data.active_tunnel_url || data.url) || "").replace(/\\/$/, "");
+          if (!liveUrl) throw new Error("No tunnel URL");
+          var ctrl = new AbortController();
+          var t = setTimeout(function() { ctrl.abort(); }, 2500);
+          return fetch(liveUrl + "/healthz", { signal: ctrl.signal, mode: "cors" })
+            .then(function(hr) {
+              clearTimeout(t);
+              if (!hr.ok) throw new Error("Tunnel unhealthy");
+              return hr.json();
+            })
+            .then(function(hj) {
+              if (!hj || !hj.ok) throw new Error("Healthcheck false");
+              mountDest(liveUrl + sub + window.location.search, "LAPTOP WORKSTATION ONLINE — LAUNCHING JARVIS...");
+            });
         })
-        .catch(function(err) {
-          console.warn("Retrying gateway connection...", err);
-          setTimeout(function() { window.location.reload(); }, 3000);
+        .catch(function() {
+          mountDest(CLOUD_JARVIS + window.location.search, "CLOUD 24/7 JARVIS ACTIVE — CONNECTING...");
         });
     })();
-
   </script>
 </body>
 </html>
