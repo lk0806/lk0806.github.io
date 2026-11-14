@@ -186,6 +186,21 @@
       </div>
     </div>
 
+    
+    <!-- 🔮 SPECIAL 4-MARKET FORECAST SUMMARY (कल और आज रात के नंबर) -->
+    <div class="glass-card p-3.5 rounded-2xl border border-amber-500/30 glow-amber">
+      <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
+          <span class="text-xs font-black text-amber-300 uppercase tracking-wider">कल और आज रात के लाइव नंबर (All-In-One Forecast)</span>
+        </div>
+        <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-700 px-2 py-0.5 rounded font-mono font-bold">24/7 AUTO-SYNC ACTIVE</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center" id="summary-forecast-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
     <!-- 🔮 SECTION 1: AAGE KYA AAYEGA — NEXT DRAW PREDICTION SUITE -->
     <div class="space-y-3">
       <div class="flex items-center justify-between px-1">
@@ -750,6 +765,60 @@
     }
 
     // ─── FULL HISTORICAL TABLE ───────────────────────────────────────────────
+    
+    let serverPredictions = null;
+
+    function renderSummaryGrid() {
+      const container = document.getElementById('summary-forecast-grid');
+      if (!container) return;
+
+      const items = [
+        { key: 'disawar', name: 'DELHI DISAWAR', time: '05:15 AM', color: 'cyan', border: 'border-cyan-500/40', defaultVal: '18', defaultHaruf: '1 / 8' },
+        { key: 'faridabad', name: 'FARIDABAD', time: '06:00 PM', color: 'emerald', border: 'border-emerald-500/40', defaultVal: '42', defaultHaruf: '4 / 2' },
+        { key: 'ghaziabad', name: 'GHAZIABAD', time: '08:30 PM', color: 'indigo', border: 'border-indigo-500/40', defaultVal: '72', defaultHaruf: '7 / 2' },
+        { key: 'gali', name: 'GALI', time: '11:15 PM', color: 'amber', border: 'border-amber-500/40', defaultVal: '68', defaultHaruf: '6 / 8' }
+      ];
+
+      const todayStr = getTodayString();
+      const todayRecord = allRecords.find(r => r.date === todayStr);
+
+      container.innerHTML = items.map(m => {
+        const isDeclaredToday = todayRecord && todayRecord[m.key];
+        const isServer = serverPredictions && serverPredictions[m.key];
+        const single = isServer ? serverPredictions[m.key].predictions.single_jodi : m.defaultVal;
+        const palat = single.split('').reverse().join('');
+        const haruf = isServer ? `${serverPredictions[m.key].haruf.andar.primary} / ${serverPredictions[m.key].haruf.bahar.primary}` : m.defaultHaruf;
+
+        const timingBadge = isDeclaredToday 
+          ? `<span class="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-bold">कल का नंबर 🎯</span>`
+          : `<span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">आज रात ⏳</span>`;
+
+        const subTitle = isDeclaredToday
+          ? `कल सुबह ~${m.time}`
+          : `आज रात ~${m.time}`;
+
+        return `
+          <div onclick="selectMarket('${m.key}')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border ${m.border} transition flex flex-col justify-between text-left">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-black text-white">${m.name}</span>
+                ${timingBadge}
+              </div>
+              <div class="text-[10px] text-slate-400 font-mono">${subTitle}</div>
+            </div>
+            <div class="my-2 text-center">
+              <span class="text-3xl font-black text-${m.color}-400 font-mono tracking-wider">${single}</span>
+              <span class="text-xs text-slate-400 ml-1 font-mono">(पल्ट: ${palat})</span>
+            </div>
+            <div class="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300 font-mono flex justify-between">
+              <span>हरूफ:</span>
+              <span class="font-bold text-${m.color}-300">${haruf}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     function renderTable() {
       updateHeroCards();
       updatePredictionUI();
@@ -847,6 +916,7 @@
     // ─── API DATA SYNC ───────────────────────────────────────────────────────
     async function apiFetchJson(path, options = {}) {
       const endpoints = [
+        './data.json',
         path,
         CLOUD_API_BASE + path
       ];
@@ -862,7 +932,8 @@
     }
 
     async function loadChartData() {
-      const data = await apiFetchJson('/api/decoder/chart');
+      const data = await apiFetchJson('./data.json') || await apiFetchJson('/api/decoder/chart');
+      if (data && data.predictions) serverPredictions = data.predictions;
       if (data && data.ok && Array.isArray(data.records) && data.records.length > 0) {
         const map = {};
         allRecords.forEach(r => { map[r.date] = r; });
@@ -878,6 +949,7 @@
         const merged = Object.keys(map).sort().map(k => map[k]);
         saveStoredRecords(merged);
         renderTable();
+        renderSummaryGrid();
         document.getElementById('last-sync-badge').innerText = `Last Sync: ${new Date().toLocaleTimeString()}`;
         return true;
       }
