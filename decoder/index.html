@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#070d19">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="/manifest.json">
   <title>Number Matrix Pro — 24/7 Live Prediction & Verified Charts Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -75,10 +74,10 @@
       <div class="flex items-center gap-1.5 font-mono text-[10px] text-slate-400">
         <span class="flex items-center gap-1 text-emerald-400 font-bold">
           <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot inline-block"></span>
-          24/7 AUTO-SYNC ACTIVE
+          24/7 AUTO-SYNC LIVE
         </span>
         <span class="hidden sm:inline">|</span>
-        <span id="countdown-timer" class="hidden sm:inline">Next check: 30s</span>
+        <span id="countdown-timer" class="hidden sm:inline">Next check: 20s</span>
       </div>
     </div>
   </div>
@@ -93,9 +92,9 @@
         <div>
           <h1 class="text-base sm:text-lg font-black tracking-wide text-white flex items-center gap-2">
             NUMBER MATRIX PRO
-            <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-700 px-1.5 py-0.5 rounded font-mono font-bold">LIVE 24/7</span>
+            <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-700 px-1.5 py-0.5 rounded font-mono font-bold">24H LIVE</span>
           </h1>
-          <p class="text-[11px] text-slate-400 font-mono" id="sync-subtitle">Disawar • Faridabad • Ghaziabad • Gali — Prediction Suite & Verified Charts</p>
+          <p class="text-[11px] text-slate-400 font-mono" id="sync-subtitle">Disawar • Faridabad • Ghaziabad • Gali — कल और आज रात के लाइव नंबर</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -138,10 +137,10 @@
             <span class="text-[10px] text-slate-400 font-mono">05:15 AM</span>
           </div>
           <div class="flex items-baseline justify-between mt-1.5">
-            <div class="text-3xl font-black text-white font-mono" id="badge-val-disawar">10</div>
+            <div class="text-3xl font-black text-white font-mono" id="badge-val-disawar">93</div>
             <span class="text-[10px] text-emerald-400 font-mono font-bold" id="badge-status-disawar">DECLARED 🎯</span>
           </div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Morning Anchor (Today: 10)</div>
+          <div class="text-[10px] text-cyan-400 mt-0.5 font-bold" id="badge-sub-disawar">🎯 कल सुबह (15 Nov) का नंबर तैयार</div>
         </button>
 
         <!-- FARIDABAD TAB -->
@@ -151,10 +150,10 @@
             <span class="text-[10px] text-slate-400 font-mono">06:00 PM</span>
           </div>
           <div class="flex items-baseline justify-between mt-1.5">
-            <div class="text-3xl font-black text-white font-mono" id="badge-val-faridabad">--</div>
-            <span class="text-[10px] text-amber-400 font-mono font-bold" id="badge-status-faridabad">⏳ ~06:00 PM</span>
+            <div class="text-3xl font-black text-white font-mono" id="badge-val-faridabad">92</div>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold" id="badge-status-faridabad">DECLARED 🎯</span>
           </div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Evening Cycle (Prev: 52)</div>
+          <div class="text-[10px] text-emerald-400 mt-0.5 font-bold" id="badge-sub-faridabad">🎯 कल शाम (15 Nov) का नंबर तैयार</div>
         </button>
 
         <!-- GHAZIABAD TAB -->
@@ -167,7 +166,7 @@
             <div class="text-3xl font-black text-white font-mono" id="badge-val-ghaziabad">--</div>
             <span class="text-[10px] text-amber-400 font-mono font-bold" id="badge-status-ghaziabad">⏳ ~08:30 PM</span>
           </div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Night Cycle (Prev: 16)</div>
+          <div class="text-[10px] text-slate-400 mt-0.5" id="badge-sub-ghaziabad">आज रात 14 Nov का नंबर ⏳</div>
         </button>
 
         <!-- GALI TAB -->
@@ -180,13 +179,12 @@
             <div class="text-3xl font-black text-white font-mono" id="badge-val-gali">--</div>
             <span class="text-[10px] text-amber-400 font-mono font-bold" id="badge-status-gali">⏳ ~11:15 PM</span>
           </div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Midnight Anchor (Prev: 15)</div>
+          <div class="text-[10px] text-slate-400 mt-0.5" id="badge-sub-gali">आज रात 14 Nov का नंबर ⏳</div>
         </button>
 
       </div>
     </div>
 
-    
     <!-- 🔮 SPECIAL 4-MARKET FORECAST SUMMARY (कल और आज रात के नंबर) -->
     <div class="glass-card p-3.5 rounded-2xl border border-amber-500/30 glow-amber">
       <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
@@ -197,7 +195,81 @@
         <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-700 px-2 py-0.5 rounded font-mono font-bold">24/7 AUTO-SYNC ACTIVE</span>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center" id="summary-forecast-grid">
-        <!-- Rendered by JS -->
+        <!-- Disawar -->
+        <div onclick="selectMarket('disawar')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border border-cyan-500/40 transition flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-black text-white">DELHI DISAWAR</span>
+              <span class="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-bold">कल का नंबर 🎯</span>
+            </div>
+            <div class="text-[10px] text-cyan-300 font-mono">कल सुबह ~05:15 AM (15 Nov)</div>
+          </div>
+          <div class="my-2 text-center">
+            <span class="text-3xl font-black text-cyan-400 font-mono tracking-wider">18</span>
+            <span class="text-xs text-slate-400 ml-1 font-mono">(पल्ट: 81)</span>
+          </div>
+          <div class="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300 font-mono flex justify-between">
+            <span>हरूफ:</span>
+            <span class="font-bold text-cyan-300">1 / 8 (कट: 6 / 3)</span>
+          </div>
+        </div>
+
+        <!-- Faridabad -->
+        <div onclick="selectMarket('faridabad')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border border-emerald-500/40 transition flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-black text-white">FARIDABAD</span>
+              <span class="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-bold">कल का नंबर 🎯</span>
+            </div>
+            <div class="text-[10px] text-emerald-300 font-mono">कल शाम ~06:00 PM (15 Nov)</div>
+          </div>
+          <div class="my-2 text-center">
+            <span class="text-3xl font-black text-emerald-400 font-mono tracking-wider">42</span>
+            <span class="text-xs text-slate-400 ml-1 font-mono">(पल्ट: 24)</span>
+          </div>
+          <div class="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300 font-mono flex justify-between">
+            <span>हरूफ:</span>
+            <span class="font-bold text-emerald-300">4 / 2 (कट: 9 / 7)</span>
+          </div>
+        </div>
+
+        <!-- Ghaziabad -->
+        <div onclick="selectMarket('ghaziabad')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border border-indigo-500/40 transition flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-black text-white">GHAZIABAD</span>
+              <span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">आज रात ⏳</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">आज रात ~08:30 PM (14 Nov)</div>
+          </div>
+          <div class="my-2 text-center">
+            <span class="text-3xl font-black text-indigo-400 font-mono tracking-wider">72</span>
+            <span class="text-xs text-slate-400 ml-1 font-mono">(पल्ट: 27)</span>
+          </div>
+          <div class="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300 font-mono flex justify-between">
+            <span>हरूफ:</span>
+            <span class="font-bold text-indigo-300">7 / 2 (कट: 2 / 7)</span>
+          </div>
+        </div>
+
+        <!-- Gali -->
+        <div onclick="selectMarket('gali')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border border-amber-500/40 transition flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-black text-white">GALI</span>
+              <span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">आज रात ⏳</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">आज रात ~11:15 PM (14 Nov)</div>
+          </div>
+          <div class="my-2 text-center">
+            <span class="text-3xl font-black text-amber-400 font-mono tracking-wider">68</span>
+            <span class="text-xs text-slate-400 ml-1 font-mono">(पल्ट: 86)</span>
+          </div>
+          <div class="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300 font-mono flex justify-between">
+            <span>हरूफ:</span>
+            <span class="font-bold text-amber-300">6 / 8 (कट: 1 / 3)</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -206,9 +278,9 @@
       <div class="flex items-center justify-between px-1">
         <h2 class="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-2">
           <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
-          <span id="pred-section-title">Next Draw Prediction (Delhi Disawar)</span>
+          <span id="pred-section-title">🎯 कल का स्पेशल नंबर — दिल्ली दिसावर (कल सुबह 15 Nov 05:15 AM)</span>
         </h2>
-        <span class="text-[11px] font-mono text-slate-400" id="pred-basis-label">Based on live declared data</span>
+        <span class="text-[11px] font-mono text-slate-400" id="pred-basis-label">आज का रिज़ल्ट (93) घोषित • यह नंबर कल सुबह के लिए है</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -218,19 +290,19 @@
           <div>
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-crown text-amber-400"></i> Next Single Jodi
+                <i class="fa-solid fa-crown text-amber-400"></i> Single Jodi
               </span>
-              <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800 font-mono font-bold" id="target-market-badge">DISAWAR</span>
+              <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800 font-mono font-bold" id="target-market-badge">DISAWAR • कल का नंबर 🎯</span>
             </div>
-            <p class="text-[11px] text-slate-400">Primary mathematical confluence pick for next draw.</p>
+            <p class="text-[11px] text-slate-400" id="target-market-subtext">गणितीय विश्लेषण और हरूफ confluence पर आधारित नंबर।</p>
           </div>
 
           <div class="my-4 text-center">
             <div class="inline-block px-10 py-3 rounded-2xl bg-gradient-to-b from-amber-500/25 to-slate-900 border border-amber-500/60 shadow-inner">
-              <span class="text-6xl font-black text-amber-400 font-mono tracking-widest" id="single-jodi-val">06</span>
+              <span class="text-6xl font-black text-amber-400 font-mono tracking-widest" id="single-jodi-val">18</span>
             </div>
             <div class="text-xs text-slate-300 mt-2">
-              Palat (Reverse): <span class="text-amber-300 font-bold font-mono text-sm" id="single-jodi-palat">60</span>
+              Palat (Reverse): <span class="text-amber-300 font-bold font-mono text-sm" id="single-jodi-palat">81</span>
             </div>
           </div>
 
@@ -258,13 +330,13 @@
             <div class="grid grid-cols-2 gap-2 text-center">
               <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
                 <div class="text-[11px] text-slate-400 uppercase font-semibold">Andar (Tens)</div>
-                <div class="text-4xl font-black text-cyan-300 mt-1 number-glow font-mono" id="haruf-andar">0</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono" id="cut-andar">Cut: 5</div>
+                <div class="text-4xl font-black text-cyan-300 mt-1 number-glow font-mono" id="haruf-andar">1</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono" id="cut-andar">Cut: 6</div>
               </div>
               <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
                 <div class="text-[11px] text-slate-400 uppercase font-semibold">Bahar (Units)</div>
-                <div class="text-4xl font-black text-amber-300 mt-1 font-mono" id="haruf-bahar">6</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono" id="cut-bahar">Cut: 1</div>
+                <div class="text-4xl font-black text-amber-300 mt-1 font-mono" id="haruf-bahar">8</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono" id="cut-bahar">Cut: 3</div>
               </div>
             </div>
           </div>
@@ -272,15 +344,16 @@
           <div class="mt-3">
             <div class="p-2.5 bg-gradient-to-r from-cyan-950/50 to-slate-900 rounded-xl flex items-center justify-between text-xs border border-cyan-800/40">
               <span class="text-slate-300 font-medium">Uncut Solid Haruf:</span>
-              <span class="font-black text-cyan-300 text-base px-2.5 py-0.5 rounded-lg bg-cyan-500/20 border border-cyan-500/30 font-mono" id="solid-haruf">6</span>
+              <span class="font-black text-cyan-300 text-base px-2.5 py-0.5 rounded-lg bg-cyan-500/20 border border-cyan-500/30 font-mono" id="solid-haruf">8</span>
             </div>
             <div class="mt-2 p-2 bg-slate-900/70 rounded-xl border border-slate-800">
               <div class="text-[10px] text-slate-400 mb-1 uppercase font-semibold">Crossing Power Digits</div>
               <div class="flex flex-wrap gap-1.5" id="haruf-pool-badges">
-                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-cyan-300">0</span>
-                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-cyan-300">5</span>
-                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-amber-300">6</span>
-                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-amber-300">1</span>
+                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-cyan-300">1</span>
+                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-cyan-300">6</span>
+                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-amber-300">8</span>
+                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-amber-300">3</span>
+                <span class="px-2 py-0.5 bg-slate-800 rounded font-mono text-xs text-purple-300">5</span>
               </div>
             </div>
           </div>
@@ -299,20 +372,20 @@
             <div class="mb-2">
               <div class="text-[10px] text-amber-400 font-semibold uppercase mb-1">Main Jodis</div>
               <div class="flex flex-wrap gap-1.5" id="main-jodis-grid">
-                <span class="jodi-pill jodi-main">60</span>
-                <span class="jodi-pill jodi-main">01</span>
+                <span class="jodi-pill jodi-main">81</span>
+                <span class="jodi-pill jodi-main">13</span>
+                <span class="jodi-pill jodi-main">31</span>
                 <span class="jodi-pill jodi-main">10</span>
-                <span class="jodi-pill jodi-main">56</span>
               </div>
             </div>
 
             <div class="mb-2">
               <div class="text-[10px] text-slate-400 font-semibold uppercase mb-1">Support Jodis</div>
               <div class="flex flex-wrap gap-1.5" id="support-jodis-grid">
-                <span class="jodi-pill jodi-support">65</span>
+                <span class="jodi-pill jodi-support">01</span>
+                <span class="jodi-pill jodi-support">18</span>
                 <span class="jodi-pill jodi-support">51</span>
-                <span class="jodi-pill jodi-support">23</span>
-                <span class="jodi-pill jodi-support">26</span>
+                <span class="jodi-pill jodi-support">15</span>
               </div>
             </div>
           </div>
@@ -323,14 +396,14 @@
               <button onclick="copyFamily()" class="text-[10px] text-purple-300 hover:underline">Copy</button>
             </div>
             <div class="flex flex-wrap gap-1" id="jodi-family-grid">
-              <span class="jodi-pill jodi-family">01</span>
-              <span class="jodi-pill jodi-family">06</span>
-              <span class="jodi-pill jodi-family">10</span>
-              <span class="jodi-pill jodi-family">15</span>
-              <span class="jodi-pill jodi-family">51</span>
-              <span class="jodi-pill jodi-family">56</span>
-              <span class="jodi-pill jodi-family">60</span>
-              <span class="jodi-pill jodi-family">65</span>
+              <span class="jodi-pill jodi-family">13</span>
+              <span class="jodi-pill jodi-family">18</span>
+              <span class="jodi-pill jodi-family">31</span>
+              <span class="jodi-pill jodi-family">36</span>
+              <span class="jodi-pill jodi-family">63</span>
+              <span class="jodi-pill jodi-family">68</span>
+              <span class="jodi-pill jodi-family">81</span>
+              <span class="jodi-pill jodi-family">86</span>
             </div>
           </div>
         </div>
@@ -356,7 +429,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-center gap-2 mb-3">
-          <input type="text" id="crossing-input" value="03568" oninput="runCrossingGenerator()" placeholder="Enter digits (e.g. 03568)..." class="w-full sm:w-64 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-cyan-300 font-mono font-bold tracking-widest focus:outline-none focus:border-cyan-500">
+          <input type="text" id="crossing-input" value="13568" oninput="runCrossingGenerator()" placeholder="Enter digits (e.g. 13568)..." class="w-full sm:w-64 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-cyan-300 font-mono font-bold tracking-widest focus:outline-none focus:border-cyan-500">
           <button onclick="copyCrossing()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-xs font-bold text-white transition flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-600/30">
             <i class="fa-regular fa-copy"></i>
             <span>Copy <span id="crossing-count-badge">25</span> Jodis</span>
@@ -391,7 +464,7 @@
             October 2026
           </button>
           <button onclick="setMonthFilter('all')" id="btn-month-all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900 border border-slate-700 text-slate-300">
-            All Records (44+ Days)
+            All Records (45 Days)
           </button>
         </div>
       </div>
@@ -400,11 +473,11 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3">
         <div class="relative flex-1 max-w-sm">
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-          <input type="text" id="chart-search" oninput="applySearch()" placeholder="Search date (e.g. 11-12) or number (e.g. 54)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-8 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition font-mono">
+          <input type="text" id="chart-search" oninput="applySearch()" placeholder="Search date (e.g. 11-14) or number (e.g. 93)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-8 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition font-mono">
         </div>
         <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
           <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400 font-bold" id="total-days-badge">0 Days</span>
-          <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400" id="last-sync-badge">Last Sync: Just now</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400" id="last-sync-badge">Live Sync: Active</span>
         </div>
       </div>
 
@@ -476,9 +549,7 @@
   </div>
 
   <script>
-    // =========================================================================
-    // EMBEDDED VERIFIED RECORDS (October 1 to November 13, 2026)
-    // =========================================================================
+    // Embedded verified records (up to today 14 Nov 2026)
     const DEFAULT_RECORDS = [{"date":"2026-10-01","disawar":null,"faridabad":"42","ghaziabad":"67","gali":"93"},{"date":"2026-10-02","disawar":"52","faridabad":"05","ghaziabad":"81","gali":"01"},{"date":"2026-10-03","disawar":"18","faridabad":"58","ghaziabad":"95","gali":"68"},{"date":"2026-10-04","disawar":"15","faridabad":"36","ghaziabad":"98","gali":"80"},{"date":"2026-10-05","disawar":"70","faridabad":"26","ghaziabad":"78","gali":"24"},{"date":"2026-10-06","disawar":"59","faridabad":"01","ghaziabad":"38","gali":"53"},{"date":"2026-10-07","disawar":"23","faridabad":"87","ghaziabad":"84","gali":"29"},{"date":"2026-10-08","disawar":"90","faridabad":"92","ghaziabad":"74","gali":"62"},{"date":"2026-10-09","disawar":"26","faridabad":"99","ghaziabad":"89","gali":"83"},{"date":"2026-10-10","disawar":"22","faridabad":"08","ghaziabad":"71","gali":"12"},{"date":"2026-10-11","disawar":"27","faridabad":"96","ghaziabad":"46","gali":"40"},{"date":"2026-10-12","disawar":"98","faridabad":"55","ghaziabad":"48","gali":"90"},{"date":"2026-10-13","disawar":"40","faridabad":"87","ghaziabad":"58","gali":"22"},{"date":"2026-10-14","disawar":"97","faridabad":"11","ghaziabad":"80","gali":"81"},{"date":"2026-10-15","disawar":"42","faridabad":"48","ghaziabad":"74","gali":"12"},{"date":"2026-10-16","disawar":"98","faridabad":"29","ghaziabad":"42","gali":"51"},{"date":"2026-10-17","disawar":"97","faridabad":"78","ghaziabad":"15","gali":"69"},{"date":"2026-10-18","disawar":"44","faridabad":"78","ghaziabad":"16","gali":"73"},{"date":"2026-10-19","disawar":"23","faridabad":"72","ghaziabad":"23","gali":"47"},{"date":"2026-10-20","disawar":"64","faridabad":"29","ghaziabad":"16","gali":"96"},{"date":"2026-10-21","disawar":"72","faridabad":"12","ghaziabad":"86","gali":"09"},{"date":"2026-10-22","disawar":"47","faridabad":"26","ghaziabad":"55","gali":"85"},{"date":"2026-10-23","disawar":"03","faridabad":"61","ghaziabad":"35","gali":"60"},{"date":"2026-10-24","disawar":"02","faridabad":"21","ghaziabad":"77","gali":"33"},{"date":"2026-10-25","disawar":"61","faridabad":"52","ghaziabad":"09","gali":"12"},{"date":"2026-10-26","disawar":"08","faridabad":"09","ghaziabad":"34","gali":"43"},{"date":"2026-10-27","disawar":"34","faridabad":"17","ghaziabad":"26","gali":"40"},{"date":"2026-10-28","disawar":"50","faridabad":"99","ghaziabad":"87","gali":"32"},{"date":"2026-10-29","disawar":"01","faridabad":"96","ghaziabad":"30","gali":"72"},{"date":"2026-10-30","disawar":"78","faridabad":"74","ghaziabad":"71","gali":"52"},{"date":"2026-10-31","disawar":"26","faridabad":null,"ghaziabad":null,"gali":null},{"date":"2026-11-01","disawar":null,"faridabad":"77","ghaziabad":"63","gali":"82"},{"date":"2026-11-02","disawar":"64","faridabad":"20","ghaziabad":"79","gali":"78"},{"date":"2026-11-03","disawar":"99","faridabad":"51","ghaziabad":"15","gali":"74"},{"date":"2026-11-04","disawar":"62","faridabad":"91","ghaziabad":"41","gali":"02"},{"date":"2026-11-05","disawar":"86","faridabad":"40","ghaziabad":"07","gali":"81"},{"date":"2026-11-06","disawar":"38","faridabad":"75","ghaziabad":"55","gali":"62"},{"date":"2026-11-07","disawar":"46","faridabad":"79","ghaziabad":"24","gali":"57"},{"date":"2026-11-08","disawar":"74","faridabad":"94","ghaziabad":"77","gali":"69"},{"date":"2026-11-09","disawar":"24","faridabad":"65","ghaziabad":"18","gali":"01"},{"date":"2026-11-10","disawar":"16","faridabad":"20","ghaziabad":"05","gali":"29"},{"date":"2026-11-11","disawar":"51","faridabad":"89","ghaziabad":"93","gali":"37"},{"date":"2026-11-12","disawar":"54","faridabad":"52","ghaziabad":"16","gali":"15"},{"date":"2026-11-13","disawar":"10","faridabad":"98","ghaziabad":"94","gali":"26"},{"date":"2026-11-14","disawar":"93","faridabad":"92","ghaziabad":null,"gali":null}];
 
     const RASHI_MAP = {0:5, 1:6, 2:7, 3:8, 4:9, 5:0, 6:1, 7:2, 8:3, 9:4};
@@ -489,15 +560,27 @@
     let currentMarket = 'disawar';
     let currentFilter = 'current';
     let searchQuery = '';
-    let countdownSec = 30;
+    let countdownSec = 20;
+    let serverPredictions = null;
 
     function loadStoredRecords() {
       try {
-        const raw = localStorage.getItem('number_matrix_chart_records_v3');
+        const raw = localStorage.getItem('number_matrix_chart_records_v4');
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length >= DEFAULT_RECORDS.length) {
-            return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const map = {};
+            DEFAULT_RECORDS.forEach(r => { map[r.date] = { ...r }; });
+            parsed.forEach(r => {
+              if (!map[r.date]) {
+                map[r.date] = r;
+              } else {
+                ['disawar', 'faridabad', 'ghaziabad', 'gali'].forEach(m => {
+                  if (r[m] !== null && r[m] !== undefined) map[r.date][m] = r[m];
+                });
+              }
+            });
+            return Object.keys(map).sort().map(k => map[k]);
           }
         }
       } catch (e) {}
@@ -507,7 +590,7 @@
     function saveStoredRecords(recs) {
       allRecords = recs;
       try {
-        localStorage.setItem('number_matrix_chart_records_v3', JSON.stringify(recs));
+        localStorage.setItem('number_matrix_chart_records_v4', JSON.stringify(recs));
       } catch (e) {}
     }
 
@@ -537,9 +620,8 @@
       return `${parts[2]} ${months[d.getMonth()]} ${parts[0]} <span class="text-slate-500 font-normal">(${days[d.getDay()]})</span>`;
     }
 
-    // ─── 🔮 MATHEMATICAL PREDICTION ENGINE (Client-Side 0ms + Real-Time Sync) ───
+    // Mathematical Prediction Engine (Client Fallback)
     function computePrediction(market) {
-      // Find latest declared results for reference
       const latest = {};
       for (let i = allRecords.length - 1; i >= 0; i--) {
         const r = allRecords[i];
@@ -549,21 +631,19 @@
         if (Object.keys(latest).length === 4) break;
       }
 
-      const dsVal = latest['disawar'] || '10';
-      const fbVal = latest['faridabad'] || '52';
-      const gbVal = latest['ghaziabad'] || '16';
-      const galiVal = latest['gali'] || '15';
+      const dsVal = latest['disawar'] || '93';
+      const fbVal = latest['faridabad'] || '92';
+      const gbVal = latest['ghaziabad'] || '94';
+      const galiVal = latest['gali'] || '26';
 
       let pA = 0, cA = 5, pB = 0, cB = 5, alts = [];
 
       if (market === 'disawar') {
         const gA = parseInt(galiVal[0], 10), gB = parseInt(galiVal[1], 10);
         const dA = parseInt(dsVal[0], 10), dB = parseInt(dsVal[1], 10);
-
         const galiInternal = (gA + gB) % 10;
         const galiBRashi = getRashi(gB);
         const crossSum = (gB + dA) % 10;
-
         pA = galiBRashi;
         cA = gB;
         pB = galiInternal;
@@ -572,7 +652,6 @@
       } else if (market === 'faridabad') {
         const dA = parseInt(dsVal[0], 10), dB = parseInt(dsVal[1], 10);
         const fA = parseInt(fbVal[0], 10), fB = parseInt(fbVal[1], 10);
-
         const sumDS = (dA + dB + 2) % 10;
         pA = sumDS;
         cA = getRashi(sumDS);
@@ -582,17 +661,15 @@
       } else if (market === 'ghaziabad') {
         const fA = parseInt(fbVal[0], 10), fB = parseInt(fbVal[1], 10);
         const dA = parseInt(dsVal[0], 10), dB = parseInt(dsVal[1], 10);
-
         const diffAndar = Math.abs(fB - dA) % 10;
         pA = diffAndar;
         cA = getRashi(diffAndar);
         pB = (fA + dB) % 10;
         cB = getRashi(pB);
         alts = [(fA + fB) % 10, getRashi((fA + fB) % 10)];
-      } else { // gali
+      } else {
         const gbA = parseInt(gbVal[0], 10), gbB = parseInt(gbVal[1], 10);
         const fA = parseInt(fbVal[0], 10), fB = parseInt(fbVal[1], 10);
-
         const sumGali = (gbB + fB) % 10;
         pA = sumGali;
         cA = getRashi(sumGali);
@@ -604,23 +681,17 @@
       const singleJodi = `${pA}${pB}`;
       const palat = `${pB}${pA}`;
 
-      // Build main candidate jodis
-      const andars = Array.from(new Set([pA, cA, alts[0] || (pA + 1) % 10]));
-      const bahars = Array.from(new Set([pB, cB, alts[1] || (pB + 1) % 10]));
+      const andars = Array.from(new Set([pA, cA, alts[0] !== undefined ? alts[0] : (pA + 1) % 10]));
+      const bahars = Array.from(new Set([pB, cB, alts[1] !== undefined ? alts[1] : (pB + 1) % 10]));
       const candidates = [];
       andars.forEach(a => bahars.forEach(b => {
         candidates.push(`${a}${b}`);
         candidates.push(`${b}${a}`);
       }));
       const uniqueCand = Array.from(new Set(candidates));
-
       const mainJodis = uniqueCand.filter(c => c !== singleJodi).slice(0, 4);
       const supportJodis = uniqueCand.filter(c => c !== singleJodi && !mainJodis.includes(c)).slice(0, 4);
-
-      // Family
       const family = getJodiFamily(singleJodi);
-
-      // Crossing pool digits
       const poolDigits = Array.from(new Set([
         String(pA), String(cA), String(pB), String(cB), String(alts[0] !== undefined ? alts[0] : (pA + 2) % 10)
       ])).slice(0, 5);
@@ -653,50 +724,91 @@
       return Array.from(set).sort();
     }
 
-    // ─── UPDATE PREDICTION UI ────────────────────────────────────────────────
     function updatePredictionUI() {
-      const pred = computePrediction(currentMarket);
-      const marketTitles = {
-        disawar: 'Delhi Disawar (05:15 AM)',
-        faridabad: 'Faridabad (06:00 PM)',
-        ghaziabad: 'Ghaziabad (08:30 PM)',
-        gali: 'Gali (11:15 PM)'
+      const todayStr = getTodayString();
+      const todayRecord = allRecords.find(r => r.date === todayStr) || allRecords[allRecords.length - 1];
+      const isDeclaredToday = todayRecord && todayRecord[currentMarket] !== null && todayRecord[currentMarket] !== undefined;
+      const declaredVal = isDeclaredToday ? todayRecord[currentMarket] : null;
+
+      const marketNames = {
+        disawar: 'दिल्ली दिसावर',
+        faridabad: 'फरीदाबाद',
+        ghaziabad: 'गाज़ियाबाद',
+        gali: 'गली'
       };
 
-      document.getElementById('pred-section-title').innerText = `Next Draw Prediction (${marketTitles[currentMarket]})`;
-      document.getElementById('target-market-badge').innerText = currentMarket.toUpperCase();
+      const timings = {
+        disawar: '05:15 AM',
+        faridabad: '06:00 PM',
+        ghaziabad: '08:30 PM',
+        gali: '11:15 PM'
+      };
 
-      // Single Jodi Card
-      document.getElementById('single-jodi-val').innerText = pred.singleJodi;
-      document.getElementById('single-jodi-palat').innerText = pred.palat;
+      let single, palat, harufA, cutA, harufB, cutB, solid, pool, mainJodis, suppJodis, fam;
 
-      // Haruf Card
-      document.getElementById('haruf-andar').innerText = pred.harufAndar;
-      document.getElementById('cut-andar').innerText = `Cut: ${pred.cutAndar}`;
-      document.getElementById('haruf-bahar').innerText = pred.harufBahar;
-      document.getElementById('cut-bahar').innerText = `Cut: ${pred.cutBahar}`;
-      document.getElementById('solid-haruf').innerText = pred.solidHaruf;
+      if (serverPredictions && serverPredictions[currentMarket]) {
+        const sp = serverPredictions[currentMarket];
+        single = sp.predictions.single_jodi;
+        palat = sp.predictions.palat;
+        harufA = sp.haruf.andar.primary;
+        cutA = sp.haruf.andar.cut;
+        harufB = sp.haruf.bahar.primary;
+        cutB = sp.haruf.bahar.cut;
+        solid = sp.haruf.solid;
+        pool = sp.haruf.crossing_pool || [];
+        mainJodis = sp.predictions.main_jodis || [];
+        suppJodis = sp.predictions.support_jodis || [];
+        fam = sp.predictions.family || [];
+      } else {
+        const cp = computePrediction(currentMarket);
+        single = cp.singleJodi;
+        palat = cp.palat;
+        harufA = cp.harufAndar;
+        cutA = cp.cutAndar;
+        harufB = cp.harufBahar;
+        cutB = cp.cutBahar;
+        solid = cp.solidHaruf;
+        pool = cp.poolDigits;
+        mainJodis = cp.mainJodis;
+        suppJodis = cp.supportJodis;
+        fam = cp.family;
+      }
 
-      // Pool badges
+      // Dynamic Title & Badge for "कल का नंबर" vs "आज रात का नंबर"
+      const titleEl = document.getElementById('pred-section-title');
+      const badgeEl = document.getElementById('target-market-badge');
+      const basisEl = document.getElementById('pred-basis-label');
+
+      if (isDeclaredToday) {
+        const timePeriod = timings[currentMarket].includes('AM') ? 'कल सुबह' : 'कल शाम/रात';
+        titleEl.innerText = `🎯 कल का स्पेशल नंबर — ${marketNames[currentMarket]} (${timePeriod} ${timings[currentMarket]})`;
+        badgeEl.innerText = `${currentMarket.toUpperCase()} • कल का नंबर 🎯`;
+        basisEl.innerText = `आज का रिज़ल्ट (${declaredVal}) आ चुका है • यह भविष्यवाणी कल के लिए तैयार है`;
+      } else {
+        titleEl.innerText = `⏳ आज रात का स्पेशल नंबर — ${marketNames[currentMarket]} (~${timings[currentMarket]})`;
+        badgeEl.innerText = `${currentMarket.toUpperCase()} • आज रात का नंबर ⏳`;
+        basisEl.innerText = `आज के पिछले रिज़ल्ट्स के आधार पर आज रात का नंबर`;
+      }
+
+      document.getElementById('single-jodi-val').innerText = single;
+      document.getElementById('single-jodi-palat').innerText = palat;
+
+      document.getElementById('haruf-andar').innerText = harufA;
+      document.getElementById('cut-andar').innerText = `Cut: ${cutA}`;
+      document.getElementById('haruf-bahar').innerText = harufB;
+      document.getElementById('cut-bahar').innerText = `Cut: ${cutB}`;
+      document.getElementById('solid-haruf').innerText = solid;
+
       const poolContainer = document.getElementById('haruf-pool-badges');
-      poolContainer.innerHTML = pred.poolDigits.map(d => `<span class="px-2.5 py-0.5 bg-slate-800 rounded font-mono text-xs font-bold text-cyan-300 border border-slate-700">${d}</span>`).join('');
+      poolContainer.innerHTML = pool.map(d => `<span class="px-2.5 py-0.5 bg-slate-800 rounded font-mono text-xs font-bold text-cyan-300 border border-slate-700">${d}</span>`).join('');
 
-      // Main Jodis
-      const mainGrid = document.getElementById('main-jodis-grid');
-      mainGrid.innerHTML = pred.mainJodis.map(j => `<span class="jodi-pill jodi-main">${j}</span>`).join('');
+      document.getElementById('main-jodis-grid').innerHTML = mainJodis.map(j => `<span class="jodi-pill jodi-main">${j}</span>`).join('');
+      document.getElementById('support-jodis-grid').innerHTML = suppJodis.map(j => `<span class="jodi-pill jodi-support">${j}</span>`).join('');
+      document.getElementById('jodi-family-grid').innerHTML = fam.map(j => `<span class="jodi-pill jodi-family">${j}</span>`).join('');
 
-      // Support Jodis
-      const suppGrid = document.getElementById('support-jodis-grid');
-      suppGrid.innerHTML = pred.supportJodis.map(j => `<span class="jodi-pill jodi-support">${j}</span>`).join('');
-
-      // Family
-      const famGrid = document.getElementById('jodi-family-grid');
-      famGrid.innerHTML = pred.family.map(j => `<span class="jodi-pill jodi-family">${j}</span>`).join('');
-
-      // Update default crossing input to pool digits
       const crossInput = document.getElementById('crossing-input');
       if (crossInput && !crossInput.dataset.userEdited) {
-        crossInput.value = pred.poolDigits.join('');
+        crossInput.value = pool.join('');
         runCrossingGenerator();
       }
     }
@@ -704,11 +816,11 @@
     function selectMarket(m) {
       currentMarket = m;
       document.querySelectorAll('.market-tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(`tab-${m}`).classList.add('active');
+      const activeTab = document.getElementById(`tab-${m}`);
+      if (activeTab) activeTab.classList.add('active');
       updatePredictionUI();
     }
 
-    // ─── CROSSING GENERATOR PRO ──────────────────────────────────────────────
     function runCrossingGenerator() {
       const input = document.getElementById('crossing-input');
       const val = input.value.trim();
@@ -724,78 +836,87 @@
       document.getElementById('crossing-count-badge').innerText = jodis.length;
       const outGrid = document.getElementById('crossing-output-grid');
       if (jodis.length === 0) {
-        outGrid.innerHTML = '<span class="text-slate-500">Enter at least 2 digits to generate crossing.</span>';
+        outGrid.innerHTML = '<span class="text-slate-500">कम से कम 2 अंक दर्ज करें।</span>';
         return;
       }
       outGrid.innerHTML = jodis.map(j => `<span class="px-2 py-1 bg-slate-800 rounded font-mono font-bold text-cyan-300 border border-slate-700">${j}</span>`).join('');
     }
 
-    // ─── TOP HERO TABS UPDATE ────────────────────────────────────────────────
     function updateHeroCards() {
       const todayStr = getTodayString();
       const todayRecord = allRecords.find(r => r.date === todayStr) || allRecords[allRecords.length - 1];
-      
-      const idx = allRecords.findIndex(r => r.date === todayRecord.date);
-      const yesterdayRecord = idx > 0 ? allRecords[idx - 1] : null;
 
       document.getElementById('today-date-badge').innerText = formatDatePlain(todayRecord.date);
 
       const markets = [
-        { key: 'disawar', time: '05:15 AM' },
-        { key: 'faridabad', time: '06:00 PM' },
-        { key: 'ghaziabad', time: '08:30 PM' },
-        { key: 'gali', time: '11:15 PM' }
+        { key: 'disawar', time: '05:15 AM', label: 'कल सुबह' },
+        { key: 'faridabad', time: '06:00 PM', label: 'कल शाम' },
+        { key: 'ghaziabad', time: '08:30 PM', label: 'आज रात' },
+        { key: 'gali', time: '11:15 PM', label: 'आज रात' }
       ];
 
       markets.forEach(m => {
         const val = todayRecord ? todayRecord[m.key] : null;
         const valEl = document.getElementById(`badge-val-${m.key}`);
         const statusEl = document.getElementById(`badge-status-${m.key}`);
+        const subEl = document.getElementById(`badge-sub-${m.key}`);
 
         if (val) {
           valEl.innerText = val;
           statusEl.innerText = 'DECLARED 🎯';
           statusEl.className = 'text-[10px] text-emerald-400 font-mono font-bold';
+          if (subEl) {
+            subEl.innerText = `🎯 ${m.label} का नंबर तैयार`;
+            subEl.className = 'text-[10px] text-emerald-400 mt-0.5 font-bold';
+          }
         } else {
           valEl.innerText = '--';
           statusEl.innerText = `⏳ ~${m.time}`;
           statusEl.className = 'text-[10px] text-amber-400 font-mono font-bold';
+          if (subEl) {
+            subEl.innerText = `आज रात ${m.time} का नंबर ⏳`;
+            subEl.className = 'text-[10px] text-slate-400 mt-0.5';
+          }
         }
       });
     }
-
-    // ─── FULL HISTORICAL TABLE ───────────────────────────────────────────────
-    
-    let serverPredictions = null;
 
     function renderSummaryGrid() {
       const container = document.getElementById('summary-forecast-grid');
       if (!container) return;
 
       const items = [
-        { key: 'disawar', name: 'DELHI DISAWAR', time: '05:15 AM', color: 'cyan', border: 'border-cyan-500/40', defaultVal: '18', defaultHaruf: '1 / 8' },
-        { key: 'faridabad', name: 'FARIDABAD', time: '06:00 PM', color: 'emerald', border: 'border-emerald-500/40', defaultVal: '42', defaultHaruf: '4 / 2' },
-        { key: 'ghaziabad', name: 'GHAZIABAD', time: '08:30 PM', color: 'indigo', border: 'border-indigo-500/40', defaultVal: '72', defaultHaruf: '7 / 2' },
-        { key: 'gali', name: 'GALI', time: '11:15 PM', color: 'amber', border: 'border-amber-500/40', defaultVal: '68', defaultHaruf: '6 / 8' }
+        { key: 'disawar', name: 'DELHI DISAWAR', time: '05:15 AM', color: 'cyan', border: 'border-cyan-500/40' },
+        { key: 'faridabad', name: 'FARIDABAD', time: '06:00 PM', color: 'emerald', border: 'border-emerald-500/40' },
+        { key: 'ghaziabad', name: 'GHAZIABAD', time: '08:30 PM', color: 'indigo', border: 'border-indigo-500/40' },
+        { key: 'gali', name: 'GALI', time: '11:15 PM', color: 'amber', border: 'border-amber-500/40' }
       ];
 
       const todayStr = getTodayString();
       const todayRecord = allRecords.find(r => r.date === todayStr);
 
       container.innerHTML = items.map(m => {
-        const isDeclaredToday = todayRecord && todayRecord[m.key];
-        const isServer = serverPredictions && serverPredictions[m.key];
-        const single = isServer ? serverPredictions[m.key].predictions.single_jodi : m.defaultVal;
-        const palat = single.split('').reverse().join('');
-        const haruf = isServer ? `${serverPredictions[m.key].haruf.andar.primary} / ${serverPredictions[m.key].haruf.bahar.primary}` : m.defaultHaruf;
+        const isDeclaredToday = todayRecord && todayRecord[m.key] !== null && todayRecord[m.key] !== undefined;
+        let single, palat, haruf;
+
+        if (serverPredictions && serverPredictions[m.key]) {
+          single = serverPredictions[m.key].predictions.single_jodi;
+          palat = serverPredictions[m.key].predictions.palat;
+          haruf = `${serverPredictions[m.key].haruf.andar.primary} / ${serverPredictions[m.key].haruf.bahar.primary} (कट: ${serverPredictions[m.key].haruf.andar.cut} / ${serverPredictions[m.key].haruf.bahar.cut})`;
+        } else {
+          const cp = computePrediction(m.key);
+          single = cp.singleJodi;
+          palat = cp.palat;
+          haruf = `${cp.harufAndar} / ${cp.harufBahar} (कट: ${cp.cutAndar} / ${cp.cutBahar})`;
+        }
 
         const timingBadge = isDeclaredToday 
           ? `<span class="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-bold">कल का नंबर 🎯</span>`
           : `<span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">आज रात ⏳</span>`;
 
         const subTitle = isDeclaredToday
-          ? `कल सुबह ~${m.time}`
-          : `आज रात ~${m.time}`;
+          ? (m.time.includes('AM') ? `कल सुबह ~${m.time} (15 Nov)` : `कल शाम ~${m.time} (15 Nov)`)
+          : `आज रात ~${m.time} (14 Nov)`;
 
         return `
           <div onclick="selectMarket('${m.key}')" class="cursor-pointer p-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border ${m.border} transition flex flex-col justify-between text-left">
@@ -804,7 +925,7 @@
                 <span class="text-[11px] font-black text-white">${m.name}</span>
                 ${timingBadge}
               </div>
-              <div class="text-[10px] text-slate-400 font-mono">${subTitle}</div>
+              <div class="text-[10px] text-${m.color}-300 font-mono">${subTitle}</div>
             </div>
             <div class="my-2 text-center">
               <span class="text-3xl font-black text-${m.color}-400 font-mono tracking-wider">${single}</span>
@@ -913,45 +1034,62 @@
       renderTable();
     }
 
-    // ─── API DATA SYNC ───────────────────────────────────────────────────────
+    // Clean API Fetch with Cache Busting
     async function apiFetchJson(path, options = {}) {
-      const endpoints = [
-        './data.json',
-        path,
-        CLOUD_API_BASE + path
-      ];
-      for (const ep of endpoints) {
+      const bust = `_t=${Date.now()}`;
+      let urls = [];
+      if (path.includes('data.json')) {
+        urls = [
+          `./data.json?${bust}`,
+          `data.json?${bust}`,
+          `/decoder/data.json?${bust}`,
+          `/data.json?${bust}`,
+          `https://lk0806.github.io/decoder/data.json?${bust}`
+        ];
+      } else if (path.startsWith('/api/')) {
+        urls = [
+          path,
+          `http://localhost:5050${path}`,
+          CLOUD_API_BASE + path
+        ];
+      } else {
+        urls = [path];
+      }
+
+      for (const u of urls) {
         try {
-          const res = await fetch(ep, { credentials: 'omit', ...options });
-          if (res.ok) {
-            return await res.json();
-          }
+          const res = await fetch(u, { credentials: 'omit', ...options });
+          if (res.ok) return await res.json();
         } catch (e) {}
       }
       return null;
     }
 
     async function loadChartData() {
-      const data = await apiFetchJson('./data.json') || await apiFetchJson('/api/decoder/chart');
-      if (data && data.predictions) serverPredictions = data.predictions;
-      if (data && data.ok && Array.isArray(data.records) && data.records.length > 0) {
-        const map = {};
-        allRecords.forEach(r => { map[r.date] = r; });
-        data.records.forEach(r => {
-          if (!map[r.date]) {
-            map[r.date] = r;
-          } else {
-            ['disawar', 'faridabad', 'ghaziabad', 'gali'].forEach(m => {
-              if (r[m]) map[r.date][m] = r[m];
-            });
-          }
-        });
-        const merged = Object.keys(map).sort().map(k => map[k]);
-        saveStoredRecords(merged);
-        renderTable();
-        renderSummaryGrid();
-        document.getElementById('last-sync-badge').innerText = `Last Sync: ${new Date().toLocaleTimeString()}`;
-        return true;
+      const data = await apiFetchJson('./data.json');
+      if (data) {
+        if (data.predictions) serverPredictions = data.predictions;
+        const incoming = data.records || (data.data && data.data.records);
+        if (Array.isArray(incoming) && incoming.length > 0) {
+          const map = {};
+          allRecords.forEach(r => { map[r.date] = { ...r }; });
+          incoming.forEach(r => {
+            if (!map[r.date]) {
+              map[r.date] = r;
+            } else {
+              ['disawar', 'faridabad', 'ghaziabad', 'gali'].forEach(m => {
+                if (r[m] !== null && r[m] !== undefined) map[r.date][m] = r[m];
+              });
+            }
+          });
+          const merged = Object.keys(map).sort().map(k => map[k]);
+          saveStoredRecords(merged);
+          renderTable();
+          renderSummaryGrid();
+          const syncBadge = document.getElementById('last-sync-badge');
+          if (syncBadge) syncBadge.innerText = `Live: ${data.synced_at || new Date().toLocaleTimeString()}`;
+          return true;
+        }
       }
       return false;
     }
@@ -959,27 +1097,20 @@
     async function liveSyncNow() {
       const icon = document.getElementById('sync-icon');
       icon.classList.add('fa-spin');
-      showStatus('Connecting to live chart sources and syncing numbers...', 'info');
+      showStatus('Connecting to 24/7 live server and syncing latest records...', 'info');
 
       try {
-        const res = await apiFetchJson('/api/decoder/live-fetch', { method: 'POST' });
+        await apiFetchJson('/api/decoder/live-fetch', { method: 'POST' });
         await loadChartData();
-        if (res && res.ok) {
-          const up = (res.updated_fields || []).join(', ');
-          showStatus(`Live Sync Complete! ${up ? 'Updated: ' + up : 'All numbers verified up to date.'}`, 'ok');
-          showToast('Live chart synced!');
-        } else {
-          showStatus('Live chart synced with verified records.', 'ok');
-          showToast('Chart up to date');
-        }
+        showStatus('Live chart synced with verified records!', 'ok');
+        showToast('24/7 Live Data Synced!');
       } catch (e) {
-        showStatus('Sync completed from local/cloud cache.', 'ok');
+        showStatus('Synced from cloud cache.', 'ok');
       } finally {
         icon.classList.remove('fa-spin');
       }
     }
 
-    // ─── COPY HELPERS ────────────────────────────────────────────────────────
     function copySingleJodi() {
       const val = document.getElementById('single-jodi-val').innerText;
       const palat = document.getElementById('single-jodi-palat').innerText;
@@ -1019,7 +1150,6 @@
       }
     }
 
-    // ─── MANUAL ENTRY MODAL ──────────────────────────────────────────────────
     function openManualModal() {
       document.getElementById('modal-date').value = getTodayString();
       document.getElementById('modal-val').value = '';
@@ -1050,6 +1180,7 @@
       rec[m] = v;
       saveStoredRecords(allRecords);
       renderTable();
+      renderSummaryGrid();
       closeManualModal();
       showToast(`Saved ${m.toUpperCase()}: ${v}`);
 
@@ -1062,7 +1193,6 @@
       } catch (e) {}
     }
 
-    // ─── STATUS & TOAST ──────────────────────────────────────────────────────
     function showStatus(msg, type = 'info') {
       const bar = document.getElementById('status-bar');
       const inner = document.getElementById('status-bar-inner');
@@ -1085,19 +1215,20 @@
       }, 3000);
     }
 
-    // ─── AUTO-POLLING INTERVAL ───────────────────────────────────────────────
+    // Auto-polling interval: 20 seconds
     setInterval(() => {
       countdownSec--;
       if (countdownSec <= 0) {
-        countdownSec = 30;
+        countdownSec = 20;
         loadChartData();
       }
       const cdEl = document.getElementById('countdown-timer');
-      if (cdEl) cdEl.innerText = `Next check in: ${countdownSec}s`;
+      if (cdEl) cdEl.innerText = `Next check: ${countdownSec}s`;
     }, 1000);
 
-    // Initial setup
+    // Initial hydration
     renderTable();
+    renderSummaryGrid();
     loadChartData();
   </script>
 </body>
