@@ -1,37 +1,37 @@
 {
   "ok": true,
-  "synced_at": "2026-11-20 11:58:51 PM",
-  "today": "2026-11-20",
-  "tomorrow": "2026-11-21",
+  "synced_at": "2026-11-21 12:00:00 AM",
+  "today": "2026-11-21",
+  "tomorrow": "2026-11-22",
   "latest_declared": {
-    "disawar": "47",
-    "faridabad": "95",
-    "ghaziabad": "15",
+    "disawar": null,
+    "faridabad": null,
+    "ghaziabad": null,
     "gali": null
   },
   "market_configs": {
     "disawar": {
       "name": "Delhi Disawar",
       "time": "05:15 AM",
-      "is_tomorrow": true,
-      "target_label": "कल सुबह • 15 Nov (05:15 AM)",
-      "target_badge": "कल का नंबर 🎯",
+      "is_tomorrow": false,
+      "target_label": "आज सुबह (05:15 AM)",
+      "target_badge": "आज का नंबर",
       "target_date": "2026-11-21"
     },
     "faridabad": {
       "name": "Faridabad",
       "time": "06:00 PM",
-      "is_tomorrow": true,
-      "target_label": "कल शाम • 15 Nov (06:00 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "is_tomorrow": false,
+      "target_label": "आज शाम (06:00 PM)",
+      "target_badge": "आज शाम का नंबर",
       "target_date": "2026-11-21"
     },
     "ghaziabad": {
       "name": "Ghaziabad",
       "time": "08:30 PM",
-      "is_tomorrow": true,
-      "target_label": "कल रात • 15 Nov (08:30 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "is_tomorrow": false,
+      "target_label": "आज रात • 14 Nov (08:30 PM)",
+      "target_badge": "आज रात का नंबर ⏳",
       "target_date": "2026-11-21"
     },
     "gali": {
@@ -40,16 +40,17 @@
       "is_tomorrow": false,
       "target_label": "आज रात • 14 Nov (11:15 PM)",
       "target_badge": "आज रात का नंबर ⏳",
-      "target_date": "2026-11-20"
+      "target_date": "2026-11-21"
     }
   },
-  "tomorrow_predictions": {
+  "tomorrow_predictions": {},
+  "tonight_predictions": {
     "disawar": {
       "market": "disawar",
       "name": "Delhi Disawar",
       "timing": "05:15 AM",
-      "target_label": "कल सुबह • 15 Nov (05:15 AM)",
-      "target_badge": "कल का नंबर 🎯",
+      "target_label": "आज सुबह (05:15 AM)",
+      "target_badge": "आज का नंबर",
       "single_jodi": "03",
       "palat": "30",
       "haruf_andar": 0,
@@ -91,8 +92,8 @@
       "market": "faridabad",
       "name": "Faridabad",
       "timing": "06:00 PM",
-      "target_label": "कल शाम • 15 Nov (06:00 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "target_label": "आज शाम (06:00 PM)",
+      "target_badge": "आज शाम का नंबर",
       "single_jodi": "36",
       "palat": "63",
       "haruf_andar": 3,
@@ -134,8 +135,8 @@
       "market": "ghaziabad",
       "name": "Ghaziabad",
       "timing": "08:30 PM",
-      "target_label": "कल रात • 15 Nov (08:30 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "target_label": "आज रात • 14 Nov (08:30 PM)",
+      "target_badge": "आज रात का नंबर ⏳",
       "single_jodi": "16",
       "palat": "61",
       "haruf_andar": 1,
@@ -166,9 +167,7 @@
         6,
         4
       ]
-    }
-  },
-  "tonight_predictions": {
+    },
     "gali": {
       "market": "gali",
       "name": "Gali",
@@ -385,10 +384,10 @@
         "Trick 2 (Gali Bahar Rashi Mirror): Gali Bahar (5) ka Rashi = 0 -> Direct Jodi 03",
         "Trick 3 (Cross Gali+Disawar): Gali Bahar (5) + Disawar Andar (4) = 9 -> 9 (Cut: 4)"
       ],
-      "generated_at": "2026-11-20 11:58:51 PM",
-      "is_tomorrow": true,
-      "target_label": "कल सुबह • 15 Nov (05:15 AM)",
-      "target_badge": "कल का नंबर 🎯",
+      "generated_at": "2026-11-21 12:00:00 AM",
+      "is_tomorrow": false,
+      "target_label": "आज सुबह (05:15 AM)",
+      "target_badge": "आज का नंबर",
       "target_date": "2026-11-21"
     },
     "faridabad": {
@@ -562,10 +561,10 @@
         "Trick 2 (DS+FB Cross): Disawar Bahar (7) + Prev FB Andar (9) = 6 (Cut: 1)",
         "Trick 3 (Disawar Rashi Support): DS Bahar (7) Rashi = 2"
       ],
-      "generated_at": "2026-11-20 11:58:51 PM",
-      "is_tomorrow": true,
-      "target_label": "कल शाम • 15 Nov (06:00 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "generated_at": "2026-11-21 12:00:00 AM",
+      "is_tomorrow": false,
+      "target_label": "आज शाम (06:00 PM)",
+      "target_badge": "आज शाम का नंबर",
       "target_date": "2026-11-21"
     },
     "ghaziabad": {
@@ -711,10 +710,10 @@
         "Trick 2 (Cross Sum): FB Andar (9) + DS Bahar (7) = 6 (Cut: 1)",
         "Trick 3 (FB Internal Sum): 9 + 5 = 4"
       ],
-      "generated_at": "2026-11-20 11:58:51 PM",
-      "is_tomorrow": true,
-      "target_label": "कल रात • 15 Nov (08:30 PM)",
-      "target_badge": "कल का नंबर 🎯",
+      "generated_at": "2026-11-21 12:00:00 AM",
+      "is_tomorrow": false,
+      "target_label": "आज रात • 14 Nov (08:30 PM)",
+      "target_badge": "आज रात का नंबर ⏳",
       "target_date": "2026-11-21"
     },
     "gali": {
@@ -866,11 +865,11 @@
         "Trick 2 (Andar Confluence): GB Andar (1) + FB Andar (9) = 0 (Cut: 5)",
         "Trick 3 (GB Internal Sum): 1 + 5 = 6"
       ],
-      "generated_at": "2026-11-20 11:58:51 PM",
+      "generated_at": "2026-11-21 12:00:00 AM",
       "is_tomorrow": false,
       "target_label": "आज रात • 14 Nov (11:15 PM)",
       "target_badge": "आज रात का नंबर ⏳",
-      "target_date": "2026-11-20"
+      "target_date": "2026-11-21"
     }
   },
   "records": [
