@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "synced_at": "2026-11-25 10:01:54 PM",
+  "synced_at": "2026-11-25 10:05:02 PM",
   "today": "2026-11-25",
   "tomorrow": "2026-11-26",
   "latest_declared": {
     "disawar": "15",
     "faridabad": "22",
-    "ghaziabad": null,
+    "ghaziabad": "61",
     "gali": null
   },
   "market_configs": {
@@ -29,10 +29,10 @@
     "ghaziabad": {
       "name": "Ghaziabad",
       "time": "08:30 PM",
-      "is_tomorrow": false,
-      "target_label": "आज रात • 14 Nov (08:30 PM)",
-      "target_badge": "आज रात का नंबर ⏳",
-      "target_date": "2026-11-25"
+      "is_tomorrow": true,
+      "target_label": "कल रात • 15 Nov (08:30 PM)",
+      "target_badge": "कल का नंबर 🎯",
+      "target_date": "2026-11-26"
     },
     "gali": {
       "name": "Gali",
@@ -128,15 +128,13 @@
         7,
         2
       ]
-    }
-  },
-  "tonight_predictions": {
+    },
     "ghaziabad": {
       "market": "ghaziabad",
       "name": "Ghaziabad",
       "timing": "08:30 PM",
-      "target_label": "आज रात • 14 Nov (08:30 PM)",
-      "target_badge": "आज रात का नंबर ⏳",
+      "target_label": "कल रात • 15 Nov (08:30 PM)",
+      "target_badge": "कल का नंबर 🎯",
       "single_jodi": "17",
       "palat": "71",
       "haruf_andar": 1,
@@ -173,48 +171,44 @@
         2,
         4
       ]
-    },
+    }
+  },
+  "tonight_predictions": {
     "gali": {
       "market": "gali",
       "name": "Gali",
       "timing": "11:15 PM",
       "target_label": "आज रात • 14 Nov (11:15 PM)",
       "target_badge": "आज रात का नंबर ⏳",
-      "single_jodi": "51",
-      "palat": "15",
-      "haruf_andar": 5,
-      "cut_andar": 0,
-      "haruf_bahar": 1,
-      "cut_bahar": 6,
-      "solid_haruf": 5,
+      "single_jodi": "38",
+      "palat": "83",
+      "haruf_andar": 3,
+      "cut_andar": 8,
+      "haruf_bahar": 8,
+      "cut_bahar": 3,
+      "solid_haruf": 3,
       "main_jodis": [
-        "15",
-        "56",
-        "65",
-        "57"
+        "83",
+        "33",
+        "88",
+        "78"
       ],
       "support_jodis": [
-        "75",
-        "01",
+        "87",
+        "73",
         "12",
         "81"
       ],
       "family": [
-        "01",
-        "06",
-        "10",
-        "15",
-        "51",
-        "56",
-        "60",
-        "65"
+        "33",
+        "38",
+        "83",
+        "88"
       ],
       "crossing_pool": [
-        5,
-        0,
-        1,
-        6,
-        2
+        3,
+        8,
+        7
       ]
     }
   },
@@ -395,7 +389,7 @@
         "Trick 2 (Gali Bahar Rashi Mirror): Gali Bahar (0) ka Rashi = 5 -> Direct Jodi 59",
         "Trick 3 (Cross Gali+Disawar): Gali Bahar (0) + Disawar Andar (1) = 1 -> 1 (Cut: 6)"
       ],
-      "generated_at": "2026-11-25 10:01:54 PM",
+      "generated_at": "2026-11-25 10:05:02 PM",
       "is_tomorrow": true,
       "target_label": "कल सुबह • 15 Nov (05:15 AM)",
       "target_badge": "कल का नंबर 🎯",
@@ -566,7 +560,7 @@
         "Trick 2 (DS+FB Cross): Disawar Bahar (5) + Prev FB Andar (2) = 7 (Cut: 2)",
         "Trick 3 (Disawar Rashi Support): DS Bahar (5) Rashi = 0"
       ],
-      "generated_at": "2026-11-25 10:01:54 PM",
+      "generated_at": "2026-11-25 10:05:02 PM",
       "is_tomorrow": true,
       "target_label": "कल शाम • 15 Nov (06:00 PM)",
       "target_badge": "कल का नंबर 🎯",
@@ -581,45 +575,45 @@
         "category": "Night"
       },
       "latest_declared": {
-        "value": "93",
-        "date": "2026-11-24"
+        "value": "61",
+        "date": "2026-11-25"
       },
       "last_verification": {
-        "date": "2026-11-24",
-        "actual": "93",
-        "predicted_single": "19",
+        "date": "2026-11-25",
+        "actual": "61",
+        "predicted_single": "17",
         "predicted_family": [
-          "14",
-          "19",
-          "41",
-          "46",
-          "64",
-          "69",
-          "91",
-          "96"
+          "12",
+          "17",
+          "21",
+          "26",
+          "62",
+          "67",
+          "71",
+          "76"
         ],
         "haruf_pool": [
           "1",
-          "3",
+          "2",
           "4",
           "6",
-          "8",
+          "7",
           "9"
         ],
         "status": "HARUF PASS ✅",
         "passed": true,
         "explanation": [
-          "Trick 1 (FB-DS Difference): Faridabad (53) Bahar (3) - Disawar (44) Andar (4) = 1 (Cut: 6)",
-          "Trick 2 (Cross Sum): FB Andar (5) + DS Bahar (4) = 9 (Cut: 4)",
-          "Trick 3 (FB Internal Sum): 5 + 3 = 8"
+          "Trick 1 (FB-DS Difference): Faridabad (22) Bahar (2) - Disawar (15) Andar (1) = 1 (Cut: 6)",
+          "Trick 2 (Cross Sum): FB Andar (2) + DS Bahar (5) = 7 (Cut: 2)",
+          "Trick 3 (FB Internal Sum): 2 + 2 = 4"
         ]
       },
       "backtest": {
-        "total_tested": 53,
-        "haruf_hits": 33,
-        "haruf_hit_rate": "62.3%",
-        "crossing_hits": 14,
-        "crossing_hit_rate": "26.4%"
+        "total_tested": 54,
+        "haruf_hits": 34,
+        "haruf_hit_rate": "63.0%",
+        "crossing_hits": 15,
+        "crossing_hit_rate": "27.8%"
       },
       "haruf": {
         "andar": {
@@ -724,24 +718,24 @@
           "77"
         ],
         "cold_overdue": [
-          "06",
-          "60",
           "08",
           "80",
           "02",
-          "20"
+          "20",
+          "05",
+          "50"
         ],
         "digit_gaps": {
-          "0": 14,
-          "1": 4,
-          "2": 8,
-          "3": 0,
-          "4": 3,
-          "5": 4,
-          "6": 12,
-          "7": 1,
-          "8": 9,
-          "9": 0
+          "0": 15,
+          "1": 0,
+          "2": 9,
+          "3": 1,
+          "4": 4,
+          "5": 5,
+          "6": 0,
+          "7": 2,
+          "8": 10,
+          "9": 1
         }
       },
       "logic_steps": [
@@ -749,11 +743,11 @@
         "Trick 2 (Cross Sum): FB Andar (2) + DS Bahar (5) = 7 (Cut: 2)",
         "Trick 3 (FB Internal Sum): 2 + 2 = 4"
       ],
-      "generated_at": "2026-11-25 10:01:54 PM",
-      "is_tomorrow": false,
-      "target_label": "आज रात • 14 Nov (08:30 PM)",
-      "target_badge": "आज रात का नंबर ⏳",
-      "target_date": "2026-11-25"
+      "generated_at": "2026-11-25 10:05:02 PM",
+      "is_tomorrow": true,
+      "target_label": "कल रात • 15 Nov (08:30 PM)",
+      "target_badge": "कल का नंबर 🎯",
+      "target_date": "2026-11-26"
     },
     "gali": {
       "market": "gali",
@@ -806,95 +800,67 @@
       },
       "haruf": {
         "andar": {
-          "primary": 5,
-          "cut": 0,
-          "label": "5 (Cut: 0)"
+          "primary": 3,
+          "cut": 8,
+          "label": "3 (Cut: 8)"
         },
         "bahar": {
-          "primary": 1,
-          "cut": 6,
-          "label": "1 (Cut: 6)"
+          "primary": 8,
+          "cut": 3,
+          "label": "8 (Cut: 3)"
         },
-        "solid_single_haruf": 5,
+        "solid_single_haruf": 3,
         "pool": [
-          5,
-          0,
-          1,
-          6,
-          2
+          3,
+          8,
+          7
         ],
-        "solid": 5,
+        "solid": 3,
         "crossing_pool": [
-          5,
-          0,
-          1,
-          6,
-          2
+          3,
+          8,
+          7
         ]
       },
       "predictions": {
-        "single_jodi": "51",
+        "single_jodi": "38",
         "main_jodis": [
-          "15",
-          "56",
-          "65",
-          "57"
+          "83",
+          "33",
+          "88",
+          "78"
         ],
         "support_jodis": [
-          "75",
-          "01",
+          "87",
+          "73",
           "12",
           "81"
         ],
         "jodi_family": [
-          "01",
-          "06",
-          "10",
-          "15",
-          "51",
-          "56",
-          "60",
-          "65"
+          "33",
+          "38",
+          "83",
+          "88"
         ],
-        "crossing_digits": "50162",
-        "crossing_count": 25,
+        "crossing_digits": "387",
+        "crossing_count": 9,
         "crossing_jodis": [
-          "00",
-          "01",
-          "02",
-          "05",
-          "06",
-          "10",
-          "11",
-          "12",
-          "15",
-          "16",
-          "20",
-          "21",
-          "22",
-          "25",
-          "26",
-          "50",
-          "51",
-          "52",
-          "55",
-          "56",
-          "60",
-          "61",
-          "62",
-          "65",
-          "66"
+          "33",
+          "37",
+          "38",
+          "73",
+          "77",
+          "78",
+          "83",
+          "87",
+          "88"
         ],
-        "palat": "15",
+        "palat": "83",
         "family": [
-          "01",
-          "06",
-          "10",
-          "15",
-          "51",
-          "56",
-          "60",
-          "65"
+          "33",
+          "38",
+          "83",
+          "88"
         ]
       },
       "stats": {
@@ -928,11 +894,11 @@
         }
       },
       "logic_steps": [
-        "Trick 1 (Night Chain GB+FB Bahar): Ghaziabad (93) Bahar (3) + Faridabad (22) Bahar (2) = 5 (Cut: 0)",
-        "Trick 2 (Andar Confluence): GB Andar (9) + FB Andar (2) = 1 (Cut: 6)",
-        "Trick 3 (GB Internal Sum): 9 + 3 = 2"
+        "Trick 1 (Night Chain GB+FB Bahar): Ghaziabad (61) Bahar (1) + Faridabad (22) Bahar (2) = 3 (Cut: 8)",
+        "Trick 2 (Andar Confluence): GB Andar (6) + FB Andar (2) = 8 (Cut: 3)",
+        "Trick 3 (GB Internal Sum): 6 + 1 = 7"
       ],
-      "generated_at": "2026-11-25 10:01:54 PM",
+      "generated_at": "2026-11-25 10:05:02 PM",
       "is_tomorrow": false,
       "target_label": "आज रात • 14 Nov (11:15 PM)",
       "target_badge": "आज रात का नंबर ⏳",
@@ -1329,7 +1295,7 @@
       "date": "2026-11-25",
       "disawar": "15",
       "faridabad": "22",
-      "ghaziabad": null,
+      "ghaziabad": "61",
       "gali": null
     }
   ]
