@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "synced_at": "2026-11-27 03:39:47 AM",
+  "synced_at": "2026-11-27 03:42:55 AM",
   "today": "2026-11-27",
   "tomorrow": "2026-11-28",
   "latest_declared": {
@@ -357,7 +357,7 @@
         "Trick 2 (Gali Bahar Rashi Mirror): Gali Bahar (2) ka Rashi = 7 -> Direct Jodi 77",
         "Trick 3 (Cross Gali+Disawar): Gali Bahar (2) + Disawar Andar (8) = 10 -> 0 (Cut: 5)"
       ],
-      "generated_at": "2026-11-27 03:39:47 AM",
+      "generated_at": "2026-11-27 03:42:55 AM",
       "is_tomorrow": false,
       "target_label": "आज सुबह (05:15 AM)",
       "target_badge": "आज का नंबर",
@@ -510,7 +510,7 @@
         "Trick 2 (DS+FB Cross): Disawar Bahar (0) + Prev FB Andar (5) = 5 (Cut: 0)",
         "Trick 3 (Disawar Rashi Support): DS Bahar (0) Rashi = 5"
       ],
-      "generated_at": "2026-11-27 03:39:47 AM",
+      "generated_at": "2026-11-27 03:42:55 AM",
       "is_tomorrow": false,
       "target_label": "आज शाम (06:00 PM)",
       "target_badge": "आज शाम का नंबर",
@@ -693,7 +693,7 @@
         "Trick 2 (Cross Sum): FB Andar (5) + DS Bahar (0) = 5 (Cut: 0)",
         "Trick 3 (FB Internal Sum): 5 + 6 = 1"
       ],
-      "generated_at": "2026-11-27 03:39:47 AM",
+      "generated_at": "2026-11-27 03:42:55 AM",
       "is_tomorrow": false,
       "target_label": "आज रात • 14 Nov (08:30 PM)",
       "target_badge": "आज रात का नंबर ⏳",
@@ -876,7 +876,7 @@
         "Trick 2 (Andar Confluence): GB Andar (2) + FB Andar (5) = 7 (Cut: 2)",
         "Trick 3 (GB Internal Sum): 2 + 4 = 6"
       ],
-      "generated_at": "2026-11-27 03:39:47 AM",
+      "generated_at": "2026-11-27 03:42:55 AM",
       "is_tomorrow": false,
       "target_label": "आज रात • 14 Nov (11:15 PM)",
       "target_badge": "आज रात का नंबर ⏳",
